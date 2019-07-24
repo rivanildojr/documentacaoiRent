@@ -696,19 +696,75 @@ margin-bottom: 20px;
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+        defs["AvaliacaoOferta"] = {
+  "type" : "object",
+  "required" : [ "id", "nota", "oferta_id", "user_id" ],
+  "properties" : {
+    "id" : {
+      "type" : "integer",
+      "example" : 21,
+      "description" : "id da avaliação"
+    },
+    "oferta_id" : {
+      "type" : "integer",
+      "example" : 12,
+      "description" : "id da oferta cuja avaliação pertence"
+    },
+    "user_id" : {
+      "type" : "integer",
+      "example" : 44,
+      "description" : "id do usuário cuja avaliação pertence"
+    },
+    "nota" : {
+      "type" : "integer",
+      "example" : 4,
+      "description" : "nota da avaliação(de 0 à 5 no formato estrela)"
+    },
+    "created_at" : {
+      "type" : "object",
+      "example" : "2019-06-17 21:17:36-03",
+      "description" : "\\\"timestamp:\" informe de quando a avaliação foi criada",
+      "properties" : { }
+    },
+    "updated_at" : {
+      "type" : "object",
+      "example" : "2019-06-25 21:00:09-03",
+      "description" : "\\\"timestamp:\" informe de quando a avaliação foi alterada",
+      "properties" : { }
+    }
+  }
+};
         defs["inline_response_200"] = {
   "properties" : {
     "type" : {
       "type" : "string",
-      "description" : "Tipo do token. Estamos usando token do tipo \"bearer\"."
+      "description" : "tipo do token. Estamos usando token do tipo \"bearer\""
     },
     "token" : {
       "type" : "string",
-      "description" : "Sequência de caracteres que representa o token usado para autenticação."
+      "description" : "sequência de caracteres que representa o token usado para autenticação"
     },
     "refreshToken" : {
       "type" : "string",
-      "description" : "Token de atualização. Não é muito usado e geralmente vem com valor null."
+      "description" : "token de atualização. Não é muito usado e geralmente vem com valor null"
+    }
+  }
+};
+        defs["inline_response_200_1"] = {
+  "properties" : {
+    "avg" : {
+      "type" : "number",
+      "example" : 4.0,
+      "description" : "\\\"avg:\" 4.0000000000000000 é um exemplo de retorno válido, com média de avaliações igual a 4."
+    }
+  }
+};
+        defs["inline_response_201"] = {
+  "properties" : {
+    "message" : {
+      "type" : "string",
+      "example" : "Avaliação realizada!",
+      "description" : "\\\"Avaliação realizada!\" deverá ser o conteúdo do campo \\\"message\" do JSON de resposta caso a avalição tenha sido realizada"
     }
   }
 };
@@ -720,6 +776,32 @@ margin-bottom: 20px;
     },
     "password" : {
       "type" : "string"
+    }
+  }
+};
+        defs["json_1"] = {
+  "type" : "object",
+  "properties" : {
+    "oferta_id" : {
+      "type" : "integer",
+      "example" : 1
+    },
+    "user_id" : {
+      "type" : "integer",
+      "example" : 3
+    },
+    "nota" : {
+      "type" : "integer",
+      "example" : 4
+    }
+  }
+};
+        defs["json_2"] = {
+  "type" : "object",
+  "properties" : {
+    "nota" : {
+      "type" : "integer",
+      "example" : 4
     }
   }
 };
@@ -775,9 +857,19 @@ margin-bottom: 20px;
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
-                  <li class="nav-header" data-group="Autenticacao"><a href="#api-Autenticacao">API Methods - Autenticacao</a></li>
-                    <li data-group="Autenticacao" data-name="autenticaUsuario" class="">
-                      <a href="#api-Autenticacao-autenticaUsuario">autenticaUsuario</a>
+                  <li class="nav-header" data-group="AvaliacaoOfertas"><a href="#api-AvaliacaoOfertas">API Methods - AvaliacaoOfertas</a></li>
+                    <li data-group="AvaliacaoOfertas" data-name="atualizaAvaliacaoOferta" class="">
+                      <a href="#api-AvaliacaoOfertas-atualizaAvaliacaoOferta">atualizaAvaliacaoOferta</a>
+                    </li>
+                    <li data-group="AvaliacaoOfertas" data-name="avaliacaoOferta" class="">
+                      <a href="#api-AvaliacaoOfertas-avaliacaoOferta">avaliacaoOferta</a>
+                    </li>
+                    <li data-group="AvaliacaoOfertas" data-name="mediaAvaliacaoOfertas" class="">
+                      <a href="#api-AvaliacaoOfertas-mediaAvaliacaoOfertas">mediaAvaliacaoOfertas</a>
+                    </li>
+                  <li class="nav-header" data-group="SessionsAutenticao"><a href="#api-SessionsAutenticao">API Methods - SessionsAutenticao</a></li>
+                    <li data-group="SessionsAutenticao" data-name="autenticaUsuario" class="">
+                      <a href="#api-SessionsAutenticao-autenticaUsuario">autenticaUsuario</a>
                     </li>
                   <li class="nav-header" data-group="Users"><a href="#api-Users">API Methods - Users</a></li>
                     <li data-group="Users" data-name="destroy" class="">
@@ -810,103 +902,107 @@ margin-bottom: 20px;
             <h2 id="welcome-to-apidoc">API and SDK Documentation</h2>
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
-            <div>Documentação do Back-End da aplicaçao iRent, disponível em<br />
+            <div>Documentação do Back-End da aplicaçao iRent, disponível em
 <a href="https://github.com/kelveng/iRent-back/">https://github.com/kelveng/iRent-back/</a></div>
           </div>
         </div>
         <div id="sections">
-                <section id="api-Autenticacao">
-                  <h1>Autenticacao</h1>
-                    <div id="api-Autenticacao-autenticaUsuario">
-                      <article id="api-Autenticacao-autenticaUsuario-0" data-group="User" data-name="autenticaUsuario" data-version="0">
+                <section id="api-AvaliacaoOfertas">
+                  <h1>AvaliacaoOfertas</h1>
+                    <div id="api-AvaliacaoOfertas-atualizaAvaliacaoOferta">
+                      <article id="api-AvaliacaoOfertas-atualizaAvaliacaoOferta-0" data-group="User" data-name="atualizaAvaliacaoOferta" data-version="0">
                         <div class="pull-left">
-                          <h1>autenticaUsuario</h1>
-                          <p>Autenticar usuário na aplicação.</p>
+                          <h1>atualizaAvaliacaoOferta</h1>
+                          <p>atualiza a avaliação de uma oferta</p>
                         </div>
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">Isto é feito para autenticar um usuário já cadastrado no sistema.</p>
+                        <p class="marked">rota que atualiza uma avaliação pelo seu id</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/sessions</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/avaliacaoOfertas/:id</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
                         <ul class="nav nav-tabs nav-tabs-examples">
-                          <li class="active"><a href="#examples-Autenticacao-autenticaUsuario-0-curl">Curl</a></li>
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-java">Java</a></li>
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-android">Android</a></li>
-                          <!--<li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-groovy">Groovy</a></li>-->
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-objc">Obj-C</a></li>
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-javascript">JavaScript</a></li>
-                          <!--<li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-angular">Angular</a></li>-->
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-csharp">C#</a></li>
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-php">PHP</a></li>
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-perl">Perl</a></li>
-                          <li class=""><a href="#examples-Autenticacao-autenticaUsuario-0-python">Python</a></li>
+                          <li class="active"><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-python">Python</a></li>
                         </ul>
 
                         <div class="tab-content">
-                          <div class="tab-pane active" id="examples-Autenticacao-autenticaUsuario-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://virtserver.swaggerhub.com/thiago-sandes/iRent-back/1.0.0/sessions"</code></pre>
+                          <div class="tab-pane active" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://localhost/avaliacaoOfertas/:id"</code></pre>
                           </div>
-                          <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-java">
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
 import io.swagger.client.auth.*;
 import io.swagger.client.model.*;
-import io.swagger.client.api.AutenticacaoApi;
+import io.swagger.client.api.AvaliacaoOfertasApi;
 
 import java.io.File;
 import java.util.*;
 
-public class AutenticacaoApiExample {
+public class AvaliacaoOfertasApiExample {
 
     public static void main(String[] args) {
         
-        AutenticacaoApi apiInstance = new AutenticacaoApi();
-        Json json = ; // Json | São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        Integer id = 56; // Integer | id da avaliação
+        Json_2 json = ; // Json_2 | é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
         try {
-            inline_response_200 result = apiInstance.autenticaUsuario(json);
+            AvaliacaoOferta result = apiInstance.atualizaAvaliacaoOferta(id, json);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AutenticacaoApi#autenticaUsuario");
+            System.err.println("Exception when calling AvaliacaoOfertasApi#atualizaAvaliacaoOferta");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
 
-                          <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-android">
-                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AutenticacaoApi;
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AvaliacaoOfertasApi;
 
-public class AutenticacaoApiExample {
+public class AvaliacaoOfertasApiExample {
 
     public static void main(String[] args) {
-        AutenticacaoApi apiInstance = new AutenticacaoApi();
-        Json json = ; // Json | São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        Integer id = 56; // Integer | id da avaliação
+        Json_2 json = ; // Json_2 | é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
         try {
-            inline_response_200 result = apiInstance.autenticaUsuario(json);
+            AvaliacaoOferta result = apiInstance.atualizaAvaliacaoOferta(id, json);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AutenticacaoApi#autenticaUsuario");
+            System.err.println("Exception when calling AvaliacaoOfertasApi#atualizaAvaliacaoOferta");
             e.printStackTrace();
         }
     }
 }</code></pre>
                           </div>
   <!--
-  <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-groovy">
+  <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-groovy">
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
-                            <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Json *json = ; // São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id da avaliação
+Json_2 *json = ; // é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
 
-AutenticacaoApi *apiInstance = [[AutenticacaoApi alloc] init];
+AvaliacaoOfertasApi *apiInstance = [[AvaliacaoOfertasApi alloc] init];
 
-// Autenticar usuário na aplicação.
-[apiInstance autenticaUsuarioWith:json
-              completionHandler: ^(inline_response_200 output, NSError* error) {
+// atualiza a avaliação de uma oferta
+[apiInstance atualizaAvaliacaoOfertaWith:id
+    json:json
+              completionHandler: ^(AvaliacaoOferta output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
                             }
@@ -917,12 +1013,14 @@ AutenticacaoApi *apiInstance = [[AutenticacaoApi alloc] init];
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-javascript">
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-javascript">
                               <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
 
-var api = new IRentBackDocumentao.AutenticacaoApi()
+var api = new IRentBackDocumentao.AvaliacaoOfertasApi()
 
-var json = ; // {Json} São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+var id = 56; // {Integer} id da avaliação
+
+var json = ; // {Json_2} é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
 
 
 var callback = function(error, data, response) {
@@ -932,14 +1030,14 @@ var callback = function(error, data, response) {
     console.log('API called successfully. Returned data: ' + data);
   }
 };
-api.autenticaUsuario(json, callback);
+api.atualizaAvaliacaoOferta(id, json, callback);
 </code></pre>
                             </div>
 
-                            <!--<div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-angular">
+                            <!--<div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-angular">
               <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
             </div>-->
-                            <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-csharp">
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-csharp">
                               <pre class="prettyprint"><code class="language-cs">using System;
 using System.Diagnostics;
 using IO.Swagger.Api;
@@ -948,23 +1046,24 @@ using IO.Swagger.Model;
 
 namespace Example
 {
-    public class autenticaUsuarioExample
+    public class atualizaAvaliacaoOfertaExample
     {
         public void main()
         {
             
-            var apiInstance = new AutenticacaoApi();
-            var json = new Json(); // Json | São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+            var apiInstance = new AvaliacaoOfertasApi();
+            var id = 56;  // Integer | id da avaliação
+            var json = new Json_2(); // Json_2 | é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
 
             try
             {
-                // Autenticar usuário na aplicação.
-                inline_response_200 result = apiInstance.autenticaUsuario(json);
+                // atualiza a avaliação de uma oferta
+                AvaliacaoOferta result = apiInstance.atualizaAvaliacaoOferta(id, json);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
             {
-                Debug.Print("Exception when calling AutenticacaoApi.autenticaUsuario: " + e.Message );
+                Debug.Print("Exception when calling AvaliacaoOfertasApi.atualizaAvaliacaoOferta: " + e.Message );
             }
         }
     }
@@ -972,40 +1071,42 @@ namespace Example
 </code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-php">
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-php">
                               <pre class="prettyprint"><code class="language-php"><&#63;php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-$api_instance = new Swagger\Client\Api\AutenticacaoApi();
-$json = ; // Json | São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+$api_instance = new Swagger\Client\Api\AvaliacaoOfertasApi();
+$id = 56; // Integer | id da avaliação
+$json = ; // Json_2 | é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
 
 try {
-    $result = $api_instance->autenticaUsuario($json);
+    $result = $api_instance->atualizaAvaliacaoOferta($id, $json);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling AutenticacaoApi->autenticaUsuario: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling AvaliacaoOfertasApi->atualizaAvaliacaoOferta: ', $e->getMessage(), PHP_EOL;
 }
 ?></code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-perl">
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-perl">
                               <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
 use WWW::SwaggerClient::Configuration;
-use WWW::SwaggerClient::AutenticacaoApi;
+use WWW::SwaggerClient::AvaliacaoOfertasApi;
 
-my $api_instance = WWW::SwaggerClient::AutenticacaoApi->new();
-my $json = WWW::SwaggerClient::Object::Json->new(); # Json | São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+my $api_instance = WWW::SwaggerClient::AvaliacaoOfertasApi->new();
+my $id = 56; # Integer | id da avaliação
+my $json = WWW::SwaggerClient::Object::Json_2->new(); # Json_2 | é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
 
 eval { 
-    my $result = $api_instance->autenticaUsuario(json => $json);
+    my $result = $api_instance->atualizaAvaliacaoOferta(id => $id, json => $json);
     print Dumper($result);
 };
 if ($@) {
-    warn "Exception when calling AutenticacaoApi->autenticaUsuario: $@\n";
+    warn "Exception when calling AvaliacaoOfertasApi->atualizaAvaliacaoOferta: $@\n";
 }</code></pre>
                             </div>
 
-                            <div class="tab-pane" id="examples-Autenticacao-autenticaUsuario-0-python">
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-atualizaAvaliacaoOferta-0-python">
                               <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
 import time
 import swagger_client
@@ -1013,15 +1114,350 @@ from swagger_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = swagger_client.AutenticacaoApi()
-json =  # Json | São precisos os seguintes campos no arquivo JSON para fazer a autenticação.
+api_instance = swagger_client.AvaliacaoOfertasApi()
+id = 56 # Integer | id da avaliação
+json =  # Json_2 | é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação
 
 try: 
-    # Autenticar usuário na aplicação.
-    api_response = api_instance.autentica_usuario(json)
+    # atualiza a avaliação de uma oferta
+    api_response = api_instance.atualiza_avaliacao_oferta(id, json)
     pprint(api_response)
 except ApiException as e:
-    print("Exception when calling AutenticacaoApi->autenticaUsuario: %s\n" % e)</code></pre>
+    print("Exception when calling AvaliacaoOfertasApi->atualizaAvaliacaoOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_atualizaAvaliacaoOferta_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id da avaliação
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json <span style="color:red;">*</span></td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "é preciso enviar o seguinte campo no arquivo JSON para fazer a atualização de uma avaliação",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/json_2"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_atualizaAvaliacaoOferta_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_atualizaAvaliacaoOferta_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-atualizaAvaliacaoOferta-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-atualizaAvaliacaoOferta-200-schema">
+                                  <div id='responses-atualizaAvaliacaoOferta-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/AvaliacaoOferta"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-atualizaAvaliacaoOferta-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-atualizaAvaliacaoOferta-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-atualizaAvaliacaoOferta-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AvaliacaoOfertas-avaliacaoOferta">
+                      <article id="api-AvaliacaoOfertas-avaliacaoOferta-0" data-group="User" data-name="avaliacaoOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>avaliacaoOferta</h1>
+                          <p>criar nova avaliação de oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que adiciona uma nova avaliação a uma oferta</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/avaliacaoOfertas</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-avaliacaoOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://localhost/avaliacaoOfertas"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AvaliacaoOfertasApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AvaliacaoOfertasApiExample {
+
+    public static void main(String[] args) {
+        
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        Json_1 json = ; // Json_1 | são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+        try {
+            inline_response_201 result = apiInstance.avaliacaoOferta(json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AvaliacaoOfertasApi#avaliacaoOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AvaliacaoOfertasApi;
+
+public class AvaliacaoOfertasApiExample {
+
+    public static void main(String[] args) {
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        Json_1 json = ; // Json_1 | são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+        try {
+            inline_response_201 result = apiInstance.avaliacaoOferta(json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AvaliacaoOfertasApi#avaliacaoOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Json_1 *json = ; // são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+
+AvaliacaoOfertasApi *apiInstance = [[AvaliacaoOfertasApi alloc] init];
+
+// criar nova avaliação de oferta
+[apiInstance avaliacaoOfertaWith:json
+              completionHandler: ^(inline_response_201 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AvaliacaoOfertasApi()
+
+var json = ; // {Json_1} são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.avaliacaoOferta(json, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class avaliacaoOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AvaliacaoOfertasApi();
+            var json = new Json_1(); // Json_1 | são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+
+            try
+            {
+                // criar nova avaliação de oferta
+                inline_response_201 result = apiInstance.avaliacaoOferta(json);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AvaliacaoOfertasApi.avaliacaoOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AvaliacaoOfertasApi();
+$json = ; // Json_1 | são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+
+try {
+    $result = $api_instance->avaliacaoOferta($json);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AvaliacaoOfertasApi->avaliacaoOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AvaliacaoOfertasApi;
+
+my $api_instance = WWW::SwaggerClient::AvaliacaoOfertasApi->new();
+my $json = WWW::SwaggerClient::Object::Json_1->new(); # Json_1 | são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+
+eval { 
+    my $result = $api_instance->avaliacaoOferta(json => $json);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AvaliacaoOfertasApi->avaliacaoOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-avaliacaoOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AvaliacaoOfertasApi()
+json =  # Json_1 | são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta
+
+try: 
+    # criar nova avaliação de oferta
+    api_response = api_instance.avaliacao_oferta(json)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AvaliacaoOfertasApi->avaliacaoOferta: %s\n" % e)</code></pre>
                             </div>
                           </div>
 
@@ -1044,7 +1480,620 @@ $(document).ready(function() {
   var schemaWrapper = {
   "in" : "body",
   "name" : "json",
-  "description" : "São precisos os seguintes campos no arquivo JSON para fazer a autenticação.",
+  "description" : "são precisos os seguintes campos no arquivo JSON para fazer a avaliação de uma oferta",
+  "required" : true,
+  "schema" : {
+    "$ref" : "#/definitions/json_1"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_avaliacaoOferta_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_avaliacaoOferta_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - OK! Serão retornados os seguintes campos em formato json, caso a avaliação tenha sido registrada </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-avaliacaoOferta-201-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-avaliacaoOferta-201-schema">
+                                  <div id='responses-avaliacaoOferta-201-schema-201' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK! Serão retornados os seguintes campos em formato json, caso a avaliação tenha sido registrada",
+  "schema" : {
+    "type" : "object",
+    "properties" : {
+      "message" : {
+        "type" : "string",
+        "example" : "Avaliação realizada!",
+        "description" : "\\\"Avaliação realizada!\" deverá ser o conteúdo do campo \\\"message\" do JSON de resposta caso a avalição tenha sido realizada"
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-avaliacaoOferta-201-schema-data').val(stringify(schema));
+                                        var result = $('#responses-avaliacaoOferta-201-schema-201');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-avaliacaoOferta-201-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AvaliacaoOfertas-mediaAvaliacaoOfertas">
+                      <article id="api-AvaliacaoOfertas-mediaAvaliacaoOfertas-0" data-group="User" data-name="mediaAvaliacaoOfertas" data-version="0">
+                        <div class="pull-left">
+                          <h1>mediaAvaliacaoOfertas</h1>
+                          <p>retorna média de avaliações de uma dada oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna a média das avaliações de uma oferta através de seu id</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/avaliacaoOfertas/:oferta_id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/avaliacaoOfertas/:oferta_id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AvaliacaoOfertasApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AvaliacaoOfertasApiExample {
+
+    public static void main(String[] args) {
+        
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        String ofertaId = ofertaId_example; // String | id da oferta que se deseja obter média de avaliações
+        try {
+            inline_response_200_1 result = apiInstance.mediaAvaliacaoOfertas(ofertaId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AvaliacaoOfertasApi#mediaAvaliacaoOfertas");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AvaliacaoOfertasApi;
+
+public class AvaliacaoOfertasApiExample {
+
+    public static void main(String[] args) {
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        String ofertaId = ofertaId_example; // String | id da oferta que se deseja obter média de avaliações
+        try {
+            inline_response_200_1 result = apiInstance.mediaAvaliacaoOfertas(ofertaId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AvaliacaoOfertasApi#mediaAvaliacaoOfertas");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">String *ofertaId = ofertaId_example; // id da oferta que se deseja obter média de avaliações
+
+AvaliacaoOfertasApi *apiInstance = [[AvaliacaoOfertasApi alloc] init];
+
+// retorna média de avaliações de uma dada oferta
+[apiInstance mediaAvaliacaoOfertasWith:ofertaId
+              completionHandler: ^(inline_response_200_1 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AvaliacaoOfertasApi()
+
+var ofertaId = ofertaId_example; // {String} id da oferta que se deseja obter média de avaliações
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.mediaAvaliacaoOfertas(ofertaId, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class mediaAvaliacaoOfertasExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AvaliacaoOfertasApi();
+            var ofertaId = ofertaId_example;  // String | id da oferta que se deseja obter média de avaliações
+
+            try
+            {
+                // retorna média de avaliações de uma dada oferta
+                inline_response_200_1 result = apiInstance.mediaAvaliacaoOfertas(ofertaId);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AvaliacaoOfertasApi.mediaAvaliacaoOfertas: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AvaliacaoOfertasApi();
+$ofertaId = ofertaId_example; // String | id da oferta que se deseja obter média de avaliações
+
+try {
+    $result = $api_instance->mediaAvaliacaoOfertas($ofertaId);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AvaliacaoOfertasApi->mediaAvaliacaoOfertas: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AvaliacaoOfertasApi;
+
+my $api_instance = WWW::SwaggerClient::AvaliacaoOfertasApi->new();
+my $ofertaId = ofertaId_example; # String | id da oferta que se deseja obter média de avaliações
+
+eval { 
+    my $result = $api_instance->mediaAvaliacaoOfertas(ofertaId => $ofertaId);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AvaliacaoOfertasApi->mediaAvaliacaoOfertas: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-mediaAvaliacaoOfertas-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AvaliacaoOfertasApi()
+ofertaId = ofertaId_example # String | id da oferta que se deseja obter média de avaliações
+
+try: 
+    # retorna média de avaliações de uma dada oferta
+    api_response = api_instance.media_avaliacao_ofertas(ofertaId)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AvaliacaoOfertasApi->mediaAvaliacaoOfertas: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">oferta_id*</td>
+<td>
+
+
+    <div id="d2e199_mediaAvaliacaoOfertas_ofertaId">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    String
+                </span>
+
+                    <div class="inner description">
+                        id da oferta que se deseja obter média de avaliações
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - média retornada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-mediaAvaliacaoOfertas-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-mediaAvaliacaoOfertas-200-schema">
+                                  <div id='responses-mediaAvaliacaoOfertas-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "média retornada com sucesso",
+  "schema" : {
+    "type" : "object",
+    "properties" : {
+      "avg" : {
+        "type" : "number",
+        "example" : 4.0,
+        "description" : "\\\"avg:\" 4.0000000000000000 é um exemplo de retorno válido, com média de avaliações igual a 4."
+      }
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-mediaAvaliacaoOfertas-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-mediaAvaliacaoOfertas-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-mediaAvaliacaoOfertas-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-SessionsAutenticao">
+                  <h1>SessionsAutenticao</h1>
+                    <div id="api-SessionsAutenticao-autenticaUsuario">
+                      <article id="api-SessionsAutenticao-autenticaUsuario-0" data-group="User" data-name="autenticaUsuario" data-version="0">
+                        <div class="pull-left">
+                          <h1>autenticaUsuario</h1>
+                          <p>autenticar usuário na aplicação.</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">isto é feito para autenticar um usuário já cadastrado no sistema</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/sessions</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-SessionsAutenticao-autenticaUsuario-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-java">Java</a></li>
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-SessionsAutenticao-autenticaUsuario-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-SessionsAutenticao-autenticaUsuario-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://localhost/sessions"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.SessionsAutenticaoApi;
+
+import java.io.File;
+import java.util.*;
+
+public class SessionsAutenticaoApiExample {
+
+    public static void main(String[] args) {
+        
+        SessionsAutenticaoApi apiInstance = new SessionsAutenticaoApi();
+        Json json = ; // Json | são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+        try {
+            inline_response_200 result = apiInstance.autenticaUsuario(json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SessionsAutenticaoApi#autenticaUsuario");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.SessionsAutenticaoApi;
+
+public class SessionsAutenticaoApiExample {
+
+    public static void main(String[] args) {
+        SessionsAutenticaoApi apiInstance = new SessionsAutenticaoApi();
+        Json json = ; // Json | são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+        try {
+            inline_response_200 result = apiInstance.autenticaUsuario(json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SessionsAutenticaoApi#autenticaUsuario");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Json *json = ; // são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+
+SessionsAutenticaoApi *apiInstance = [[SessionsAutenticaoApi alloc] init];
+
+// autenticar usuário na aplicação.
+[apiInstance autenticaUsuarioWith:json
+              completionHandler: ^(inline_response_200 output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.SessionsAutenticaoApi()
+
+var json = ; // {Json} são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.autenticaUsuario(json, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class autenticaUsuarioExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new SessionsAutenticaoApi();
+            var json = new Json(); // Json | são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+
+            try
+            {
+                // autenticar usuário na aplicação.
+                inline_response_200 result = apiInstance.autenticaUsuario(json);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling SessionsAutenticaoApi.autenticaUsuario: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\SessionsAutenticaoApi();
+$json = ; // Json | são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+
+try {
+    $result = $api_instance->autenticaUsuario($json);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling SessionsAutenticaoApi->autenticaUsuario: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::SessionsAutenticaoApi;
+
+my $api_instance = WWW::SwaggerClient::SessionsAutenticaoApi->new();
+my $json = WWW::SwaggerClient::Object::Json->new(); # Json | são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+
+eval { 
+    my $result = $api_instance->autenticaUsuario(json => $json);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling SessionsAutenticaoApi->autenticaUsuario: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-SessionsAutenticao-autenticaUsuario-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.SessionsAutenticaoApi()
+json =  # Json | são precisos os seguintes campos no arquivo JSON para fazer a autenticação
+
+try: 
+    # autenticar usuário na aplicação.
+    api_response = api_instance.autentica_usuario(json)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling SessionsAutenticaoApi->autenticaUsuario: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json <span style="color:red;">*</span></td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "são precisos os seguintes campos no arquivo JSON para fazer a autenticação",
   "required" : true,
   "schema" : {
     "$ref" : "#/definitions/json"
@@ -1075,7 +2124,7 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 200 - OK! Serão retornados os seguintes campos em formato json, caso o usuário tenha sido autenticado. </h3>
+                            <h3> Status: 200 - OK! Serão retornados os seguintes campos em formato json, caso o usuário tenha sido autenticado </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -1090,21 +2139,21 @@ $(document).ready(function() {
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "OK! Serão retornados os seguintes campos em formato json, caso o usuário tenha sido autenticado.",
+  "description" : "OK! Serão retornados os seguintes campos em formato json, caso o usuário tenha sido autenticado",
   "schema" : {
     "type" : "object",
     "properties" : {
       "type" : {
         "type" : "string",
-        "description" : "Tipo do token. Estamos usando token do tipo \"bearer\"."
+        "description" : "tipo do token. Estamos usando token do tipo \"bearer\""
       },
       "token" : {
         "type" : "string",
-        "description" : "Sequência de caracteres que representa o token usado para autenticação."
+        "description" : "sequência de caracteres que representa o token usado para autenticação"
       },
       "refreshToken" : {
         "type" : "string",
-        "description" : "Token de atualização. Não é muito usado e geralmente vem com valor null."
+        "description" : "token de atualização. Não é muito usado e geralmente vem com valor null"
       }
     }
   }
@@ -1170,7 +2219,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-destroy-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE "https://virtserver.swaggerhub.com/thiago-sandes/iRent-back/1.0.0/users/:username"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE "https://localhost/users/:username"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-destroy-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1434,7 +2483,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-index-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://virtserver.swaggerhub.com/thiago-sandes/iRent-back/1.0.0/users"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/users"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-index-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -1697,7 +2746,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-show-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://virtserver.swaggerhub.com/thiago-sandes/iRent-back/1.0.0/users/:username"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/users/:username"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-show-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2013,7 +3062,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-store-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://virtserver.swaggerhub.com/thiago-sandes/iRent-back/1.0.0/users"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://localhost/users"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-store-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -2282,7 +3331,7 @@ $(document).ready(function() {
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-update-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://virtserver.swaggerhub.com/thiago-sandes/iRent-back/1.0.0/users/:username"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://localhost/users/:username"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-update-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
