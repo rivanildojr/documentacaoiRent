@@ -738,14 +738,17 @@ margin-bottom: 20px;
   "properties" : {
     "type" : {
       "type" : "string",
+      "example" : "bearer",
       "description" : "tipo do token. Estamos usando token do tipo \"bearer\""
     },
     "token" : {
       "type" : "string",
+      "example" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjExLCJpYXQiOjE1NjQwNDgxOTV9.Zy_uiNCBE1Ebc4g5mX5AV9yF-ALz4T648M6PIJZSBiU",
       "description" : "sequência de caracteres que representa o token usado para autenticação"
     },
     "refreshToken" : {
       "type" : "string",
+      "example" : "null",
       "description" : "token de atualização. Não é muito usado e geralmente vem com valor null"
     }
   }
@@ -771,11 +774,13 @@ margin-bottom: 20px;
         defs["json"] = {
   "type" : "object",
   "properties" : {
-    "email" : {
-      "type" : "string"
+    "username" : {
+      "type" : "string",
+      "example" : "thiago_sandes"
     },
     "password" : {
-      "type" : "string"
+      "type" : "string",
+      "example" : "gtx409sd"
     }
   }
 };
@@ -2145,14 +2150,17 @@ $(document).ready(function() {
     "properties" : {
       "type" : {
         "type" : "string",
+        "example" : "bearer",
         "description" : "tipo do token. Estamos usando token do tipo \"bearer\""
       },
       "token" : {
         "type" : "string",
+        "example" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjExLCJpYXQiOjE1NjQwNDgxOTV9.Zy_uiNCBE1Ebc4g5mX5AV9yF-ALz4T648M6PIJZSBiU",
         "description" : "sequência de caracteres que representa o token usado para autenticação"
       },
       "refreshToken" : {
         "type" : "string",
+        "example" : "null",
         "description" : "token de atualização. Não é muito usado e geralmente vem com valor null"
       }
     }
