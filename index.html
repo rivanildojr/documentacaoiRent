@@ -757,8 +757,8 @@ margin-bottom: 20px;
   "properties" : {
     "avg" : {
       "type" : "number",
-      "example" : 4.0,
-      "description" : "\\\"avg:\" 4.0000000000000000 é um exemplo de retorno válido, com média de avaliações igual a 4"
+      "example" : "avg: 4.0000000000000000",
+      "description" : "4.0000000000000000 é um exemplo de retorno válido para o campo \"avg\", com média de avaliações igual a 4"
     }
   }
 };
@@ -776,7 +776,7 @@ margin-bottom: 20px;
     "message" : {
       "type" : "string",
       "example" : "Avaliação realizada!",
-      "description" : "\\\"Avaliação realizada!\" deverá ser o conteúdo do campo \\\"message\" do JSON de resposta caso a avalição tenha sido realizada"
+      "description" : "Avaliação realizada!  esse deverá ser o conteúdo do campo \"message\" do JSON de resposta caso a avaliação tenha sido realizada"
     }
   }
 };
@@ -786,6 +786,15 @@ margin-bottom: 20px;
       "type" : "string",
       "example" : "message: {}",
       "description" : "Campo deve vir vazio caso avaliacaoOferta não seja encontrada"
+    }
+  }
+};
+        defs["inline_response_409"] = {
+  "properties" : {
+    "message" : {
+      "type" : "string",
+      "example" : "Avaliação já realizada!",
+      "description" : "Avaliação já realizada! esse deverá ser o conteúdo do campo \"message\" do JSON de resposta caso a avaliação não tenha sido realizada"
     }
   }
 };
@@ -1540,7 +1549,7 @@ $(document).ready(function() {
 
 
                           <h2>Responses</h2>
-                            <h3> Status: 201 - OK! Serão retornados os seguintes campos em formato json, caso a avaliação tenha sido registrada </h3>
+                            <h3> Status: 201 - OK! Serão retornados os seguintes campos em formato JSON, caso a avaliação tenha sido registrada </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                                 <li class="active">
@@ -1555,14 +1564,14 @@ $(document).ready(function() {
                                     <script>
                                       $(document).ready(function() {
                                         var schemaWrapper = {
-  "description" : "OK! Serão retornados os seguintes campos em formato json, caso a avaliação tenha sido registrada",
+  "description" : "OK! Serão retornados os seguintes campos em formato JSON, caso a avaliação tenha sido registrada",
   "schema" : {
     "type" : "object",
     "properties" : {
       "message" : {
         "type" : "string",
         "example" : "Avaliação realizada!",
-        "description" : "\\\"Avaliação realizada!\" deverá ser o conteúdo do campo \\\"message\" do JSON de resposta caso a avalição tenha sido realizada"
+        "description" : "Avaliação realizada!  esse deverá ser o conteúdo do campo \"message\" do JSON de resposta caso a avaliação tenha sido realizada"
       }
     }
   }
@@ -1611,8 +1620,8 @@ $(document).ready(function() {
     "properties" : {
       "message" : {
         "type" : "string",
-        "example" : "Avaliação realizada!",
-        "description" : "\\\"Avaliação realizada!\" deverá ser o conteúdo do campo \\\"message\" do JSON de resposta caso a avalição tenha sido realizada"
+        "example" : "Avaliação já realizada!",
+        "description" : "Avaliação já realizada! esse deverá ser o conteúdo do campo \"message\" do JSON de resposta caso a avaliação não tenha sido realizada"
       }
     }
   }
@@ -2471,8 +2480,8 @@ except ApiException as e:
     "properties" : {
       "avg" : {
         "type" : "number",
-        "example" : 4.0,
-        "description" : "\\\"avg:\" 4.0000000000000000 é um exemplo de retorno válido, com média de avaliações igual a 4"
+        "example" : "avg: 4.0000000000000000",
+        "description" : "4.0000000000000000 é um exemplo de retorno válido para o campo \"avg\", com média de avaliações igual a 4"
       }
     }
   }
