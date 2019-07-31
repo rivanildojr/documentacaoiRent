@@ -902,6 +902,9 @@ margin-bottom: 20px;
                     <li data-group="AvaliacaoOfertas" data-name="getAllAvaliacaoOferta" class="">
                       <a href="#api-AvaliacaoOfertas-getAllAvaliacaoOferta">getAllAvaliacaoOferta</a>
                     </li>
+                    <li data-group="AvaliacaoOfertas" data-name="getAvaliacaoOferta" class="">
+                      <a href="#api-AvaliacaoOfertas-getAvaliacaoOferta">getAvaliacaoOferta</a>
+                    </li>
                     <li data-group="AvaliacaoOfertas" data-name="mediaAvaliacaoOfertas" class="">
                       <a href="#api-AvaliacaoOfertas-mediaAvaliacaoOfertas">mediaAvaliacaoOfertas</a>
                     </li>
@@ -941,7 +944,7 @@ margin-bottom: 20px;
               <div class="app-desc">Version: 1.0.0</div>
             <hr>
             <div>Documentação do Back-End da aplicaçao iRent, disponível em
-<a href="https://github.com/kelveng/iRent-back/">https://github.com/kelveng/iRent-back/</a></div>
+[https://rivanildojr.github.io/documentacaoiRent/)</div>
           </div>
         </div>
         <div id="sections">
@@ -2207,6 +2210,258 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-getAllAvaliacaoOferta-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-AvaliacaoOfertas-getAvaliacaoOferta">
+                      <article id="api-AvaliacaoOfertas-getAvaliacaoOferta-0" data-group="User" data-name="getAvaliacaoOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>getAvaliacaoOferta</h1>
+                          <p>retorna uma avaliação específica</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna uma avaliação de oferta, se existir, dados o id do usuário e o id da oferta</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/avaliacaoOfertas/:user_id/:oferta_id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-AvaliacaoOfertas-getAvaliacaoOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/avaliacaoOfertas/:user_id/:oferta_id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AvaliacaoOfertasApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AvaliacaoOfertasApiExample {
+
+    public static void main(String[] args) {
+        
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        try {
+            AvaliacaoOferta result = apiInstance.getAvaliacaoOferta();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AvaliacaoOfertasApi#getAvaliacaoOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AvaliacaoOfertasApi;
+
+public class AvaliacaoOfertasApiExample {
+
+    public static void main(String[] args) {
+        AvaliacaoOfertasApi apiInstance = new AvaliacaoOfertasApi();
+        try {
+            AvaliacaoOferta result = apiInstance.getAvaliacaoOferta();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AvaliacaoOfertasApi#getAvaliacaoOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+AvaliacaoOfertasApi *apiInstance = [[AvaliacaoOfertasApi alloc] init];
+
+// retorna uma avaliação específica
+[apiInstance getAvaliacaoOfertaWithCompletionHandler: 
+              ^(AvaliacaoOferta output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AvaliacaoOfertasApi()
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getAvaliacaoOferta(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getAvaliacaoOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AvaliacaoOfertasApi();
+
+            try
+            {
+                // retorna uma avaliação específica
+                AvaliacaoOferta result = apiInstance.getAvaliacaoOferta();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AvaliacaoOfertasApi.getAvaliacaoOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AvaliacaoOfertasApi();
+
+try {
+    $result = $api_instance->getAvaliacaoOferta();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AvaliacaoOfertasApi->getAvaliacaoOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AvaliacaoOfertasApi;
+
+my $api_instance = WWW::SwaggerClient::AvaliacaoOfertasApi->new();
+
+eval { 
+    my $result = $api_instance->getAvaliacaoOferta();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AvaliacaoOfertasApi->getAvaliacaoOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-AvaliacaoOfertas-getAvaliacaoOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AvaliacaoOfertasApi()
+
+try: 
+    # retorna uma avaliação específica
+    api_response = api_instance.get_avaliacao_oferta()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AvaliacaoOfertasApi->getAvaliacaoOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - OK! Retornou a avaliação em formato JSON. Caso não exista a avaliação, o retorno será um JSON vazio { [] } ! </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getAvaliacaoOferta-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getAvaliacaoOferta-200-schema">
+                                  <div id='responses-getAvaliacaoOferta-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "OK! Retornou a avaliação em formato JSON. Caso não exista a avaliação, o retorno será um JSON vazio { [] } !",
+  "schema" : {
+    "$ref" : "#/definitions/AvaliacaoOferta"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getAvaliacaoOferta-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getAvaliacaoOferta-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getAvaliacaoOferta-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
