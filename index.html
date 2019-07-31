@@ -696,6 +696,37 @@ margin-bottom: 20px;
   <script>
     // Script section to load models into a JS Var
     var defs = {}
+        defs["Anuncio"] = {
+  "type" : "object",
+  "required" : [ "descricao", "preferencia", "qtdCurtidas", "titulo", "user_id" ],
+  "properties" : {
+    "user_id" : {
+      "type" : "integer",
+      "example" : 10,
+      "description" : "id do usuario que está criando a oferta"
+    },
+    "titulo" : {
+      "type" : "string",
+      "example" : "Apartamento proximo a UFS",
+      "description" : "titulo da oferta"
+    },
+    "descricao" : {
+      "type" : "string",
+      "example" : "o apartamento vem com moveis basicos...",
+      "description" : "descrição da oferta"
+    },
+    "preferencia" : {
+      "type" : "string",
+      "example" : "casa proximo ao restaurante",
+      "description" : "preço da oferta"
+    },
+    "qtdCurtidas" : {
+      "type" : "integer",
+      "example" : 100,
+      "description" : "quantidade de curtidas do anuncio"
+    }
+  }
+};
         defs["AvaliacaoOferta"] = {
   "type" : "object",
   "required" : [ "id", "nota", "user_id" ],
@@ -837,6 +868,50 @@ margin-bottom: 20px;
     }
   }
 };
+        defs["Oferta"] = {
+  "type" : "object",
+  "required" : [ "descricao", "endereco_id", "preco", "telefone", "titulo", "user_id" ],
+  "properties" : {
+    "user_id" : {
+      "type" : "integer",
+      "example" : 12,
+      "description" : "id do usuario que está criando a oferta"
+    },
+    "endereco_id" : {
+      "type" : "integer",
+      "example" : 10,
+      "description" : "id do endereço da oferta criado"
+    },
+    "titulo" : {
+      "type" : "string",
+      "example" : "Apartamento proximo a UFS",
+      "description" : "titulo da oferta"
+    },
+    "telefone" : {
+      "type" : "string",
+      "example" : "79 996969696",
+      "description" : "telefone de contato do ofertante"
+    },
+    "descricao" : {
+      "type" : "string",
+      "example" : "o apartamento vem com moveis basicos...",
+      "description" : "descrição da oferta"
+    },
+    "preco" : {
+      "type" : "number",
+      "example" : "200,00",
+      "description" : "preço da oferta"
+    },
+    "restricao" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string",
+        "example" : "o apartamento vem com moveis basicos...",
+        "description" : "descrição da oferta"
+      }
+    }
+  }
+};
         defs["User"] = {
   "type" : "object",
   "required" : [ "email", "name", "password", "sex", "telephone", "username" ],
@@ -889,6 +964,22 @@ margin-bottom: 20px;
             -->
             <li class="nav-fixed nav-header active" data-group="_"><a href="#api-_">API Summary</a></li>
 
+                  <li class="nav-header" data-group="Anuncio"><a href="#api-Anuncio">API Methods - Anuncio</a></li>
+                    <li data-group="Anuncio" data-name="destroyAnuncio" class="">
+                      <a href="#api-Anuncio-destroyAnuncio">destroyAnuncio</a>
+                    </li>
+                    <li data-group="Anuncio" data-name="indexAnuncios" class="">
+                      <a href="#api-Anuncio-indexAnuncios">indexAnuncios</a>
+                    </li>
+                    <li data-group="Anuncio" data-name="showAnuncio" class="">
+                      <a href="#api-Anuncio-showAnuncio">showAnuncio</a>
+                    </li>
+                    <li data-group="Anuncio" data-name="storeAnuncio" class="">
+                      <a href="#api-Anuncio-storeAnuncio">storeAnuncio</a>
+                    </li>
+                    <li data-group="Anuncio" data-name="updateAnuncio" class="">
+                      <a href="#api-Anuncio-updateAnuncio">updateAnuncio</a>
+                    </li>
                   <li class="nav-header" data-group="AvaliacaoOfertas"><a href="#api-AvaliacaoOfertas">API Methods - AvaliacaoOfertas</a></li>
                     <li data-group="AvaliacaoOfertas" data-name="atualizaAvaliacaoOferta" class="">
                       <a href="#api-AvaliacaoOfertas-atualizaAvaliacaoOferta">atualizaAvaliacaoOferta</a>
@@ -908,6 +999,22 @@ margin-bottom: 20px;
                     <li data-group="AvaliacaoOfertas" data-name="mediaAvaliacaoOfertas" class="">
                       <a href="#api-AvaliacaoOfertas-mediaAvaliacaoOfertas">mediaAvaliacaoOfertas</a>
                     </li>
+                  <li class="nav-header" data-group="Oferta"><a href="#api-Oferta">API Methods - Oferta</a></li>
+                    <li data-group="Oferta" data-name="destroyOferta" class="">
+                      <a href="#api-Oferta-destroyOferta">destroyOferta</a>
+                    </li>
+                    <li data-group="Oferta" data-name="indexOferta" class="">
+                      <a href="#api-Oferta-indexOferta">indexOferta</a>
+                    </li>
+                    <li data-group="Oferta" data-name="showOferta" class="">
+                      <a href="#api-Oferta-showOferta">showOferta</a>
+                    </li>
+                    <li data-group="Oferta" data-name="storeOferta" class="">
+                      <a href="#api-Oferta-storeOferta">storeOferta</a>
+                    </li>
+                    <li data-group="Oferta" data-name="updateOferta" class="">
+                      <a href="#api-Oferta-updateOferta">updateOferta</a>
+                    </li>
                   <li class="nav-header" data-group="SessionsAutenticao"><a href="#api-SessionsAutenticao">API Methods - SessionsAutenticao</a></li>
                     <li data-group="SessionsAutenticao" data-name="autenticaUsuario" class="">
                       <a href="#api-SessionsAutenticao-autenticaUsuario">autenticaUsuario</a>
@@ -921,6 +1028,9 @@ margin-bottom: 20px;
                     </li>
                     <li data-group="Users" data-name="show" class="">
                       <a href="#api-Users-show">show</a>
+                    </li>
+                    <li data-group="Users" data-name="showID" class="">
+                      <a href="#api-Users-showID">showID</a>
                     </li>
                     <li data-group="Users" data-name="store" class="">
                       <a href="#api-Users-store">store</a>
@@ -948,6 +1058,1498 @@ margin-bottom: 20px;
           </div>
         </div>
         <div id="sections">
+                <section id="api-Anuncio">
+                  <h1>Anuncio</h1>
+                    <div id="api-Anuncio-destroyAnuncio">
+                      <article id="api-Anuncio-destroyAnuncio-0" data-group="User" data-name="destroyAnuncio" data-version="0">
+                        <div class="pull-left">
+                          <h1>destroyAnuncio</h1>
+                          <p>remove o anuncio</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que remove os dados do anuncio</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/anuncio/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Anuncio-destroyAnuncio-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-destroyAnuncio-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-destroyAnuncio-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Anuncio-destroyAnuncio-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Anuncio-destroyAnuncio-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE "https://localhost/anuncio/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AnuncioApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        
+        AnuncioApi apiInstance = new AnuncioApi();
+        Integer id = 56; // Integer | id do anuncio que será removido
+        try {
+            apiInstance.destroyAnuncio(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#destroyAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AnuncioApi;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        AnuncioApi apiInstance = new AnuncioApi();
+        Integer id = 56; // Integer | id do anuncio que será removido
+        try {
+            apiInstance.destroyAnuncio(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#destroyAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do anuncio que será removido
+
+AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
+
+// remove o anuncio
+[apiInstance destroyAnuncioWith:id
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AnuncioApi()
+
+var id = 56; // {Integer} id do anuncio que será removido
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.destroyAnuncio(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class destroyAnuncioExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AnuncioApi();
+            var id = 56;  // Integer | id do anuncio que será removido
+
+            try
+            {
+                // remove o anuncio
+                apiInstance.destroyAnuncio(id);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AnuncioApi.destroyAnuncio: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AnuncioApi();
+$id = 56; // Integer | id do anuncio que será removido
+
+try {
+    $api_instance->destroyAnuncio($id);
+} catch (Exception $e) {
+    echo 'Exception when calling AnuncioApi->destroyAnuncio: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AnuncioApi;
+
+my $api_instance = WWW::SwaggerClient::AnuncioApi->new();
+my $id = 56; # Integer | id do anuncio que será removido
+
+eval { 
+    $api_instance->destroyAnuncio(id => $id);
+};
+if ($@) {
+    warn "Exception when calling AnuncioApi->destroyAnuncio: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-destroyAnuncio-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AnuncioApi()
+id = 56 # Integer | id do anuncio que será removido
+
+try: 
+    # remove o anuncio
+    api_instance.destroy_anuncio(id)
+except ApiException as e:
+    print("Exception when calling AnuncioApi->destroyAnuncio: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_destroyAnuncio_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do anuncio que será removido
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Anuncio removido </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Anuncio não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servido </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Anuncio-indexAnuncios">
+                      <article id="api-Anuncio-indexAnuncios-0" data-group="User" data-name="indexAnuncios" data-version="0">
+                        <div class="pull-left">
+                          <h1>indexAnuncios</h1>
+                          <p>retorna todos os anuncios</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota na qual retorna dos os anuncios cadastrado no banco de dados</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/anuncio</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Anuncio-indexAnuncios-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-indexAnuncios-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-indexAnuncios-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Anuncio-indexAnuncios-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Anuncio-indexAnuncios-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/anuncio"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AnuncioApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        
+        AnuncioApi apiInstance = new AnuncioApi();
+        try {
+            array[Anuncio] result = apiInstance.indexAnuncios();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#indexAnuncios");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AnuncioApi;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        AnuncioApi apiInstance = new AnuncioApi();
+        try {
+            array[Anuncio] result = apiInstance.indexAnuncios();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#indexAnuncios");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
+
+// retorna todos os anuncios
+[apiInstance indexAnunciosWithCompletionHandler: 
+              ^(array[Anuncio] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AnuncioApi()
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.indexAnuncios(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class indexAnunciosExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AnuncioApi();
+
+            try
+            {
+                // retorna todos os anuncios
+                array[Anuncio] result = apiInstance.indexAnuncios();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AnuncioApi.indexAnuncios: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AnuncioApi();
+
+try {
+    $result = $api_instance->indexAnuncios();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AnuncioApi->indexAnuncios: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AnuncioApi;
+
+my $api_instance = WWW::SwaggerClient::AnuncioApi->new();
+
+eval { 
+    my $result = $api_instance->indexAnuncios();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AnuncioApi->indexAnuncios: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-indexAnuncios-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AnuncioApi()
+
+try: 
+    # retorna todos os anuncios
+    api_response = api_instance.index_anuncios()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AnuncioApi->indexAnuncios: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-indexAnuncios-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-indexAnuncios-200-schema">
+                                  <div id='responses-indexAnuncios-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Anuncio"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-indexAnuncios-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-indexAnuncios-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-indexAnuncios-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Anuncio-showAnuncio">
+                      <article id="api-Anuncio-showAnuncio-0" data-group="User" data-name="showAnuncio" data-version="0">
+                        <div class="pull-left">
+                          <h1>showAnuncio</h1>
+                          <p>retorna um anuncio</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna um anuncio com o id passado</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/anuncio/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Anuncio-showAnuncio-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-showAnuncio-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-showAnuncio-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Anuncio-showAnuncio-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Anuncio-showAnuncio-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/anuncio/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AnuncioApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        
+        AnuncioApi apiInstance = new AnuncioApi();
+        Integer id = 56; // Integer | id do anuncio que será atualizado
+        try {
+            Anuncio result = apiInstance.showAnuncio(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#showAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AnuncioApi;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        AnuncioApi apiInstance = new AnuncioApi();
+        Integer id = 56; // Integer | id do anuncio que será atualizado
+        try {
+            Anuncio result = apiInstance.showAnuncio(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#showAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do anuncio que será atualizado
+
+AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
+
+// retorna um anuncio
+[apiInstance showAnuncioWith:id
+              completionHandler: ^(Anuncio output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AnuncioApi()
+
+var id = 56; // {Integer} id do anuncio que será atualizado
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.showAnuncio(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Anuncio-showAnuncio-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class showAnuncioExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AnuncioApi();
+            var id = 56;  // Integer | id do anuncio que será atualizado
+
+            try
+            {
+                // retorna um anuncio
+                Anuncio result = apiInstance.showAnuncio(id);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AnuncioApi.showAnuncio: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AnuncioApi();
+$id = 56; // Integer | id do anuncio que será atualizado
+
+try {
+    $result = $api_instance->showAnuncio($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AnuncioApi->showAnuncio: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AnuncioApi;
+
+my $api_instance = WWW::SwaggerClient::AnuncioApi->new();
+my $id = 56; # Integer | id do anuncio que será atualizado
+
+eval { 
+    my $result = $api_instance->showAnuncio(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AnuncioApi->showAnuncio: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AnuncioApi()
+id = 56 # Integer | id do anuncio que será atualizado
+
+try: 
+    # retorna um anuncio
+    api_response = api_instance.show_anuncio(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AnuncioApi->showAnuncio: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_showAnuncio_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do anuncio que será atualizado
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-showAnuncio-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-showAnuncio-200-schema">
+                                  <div id='responses-showAnuncio-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/Anuncio"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-showAnuncio-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-showAnuncio-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-showAnuncio-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Anuncio não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Anuncio-storeAnuncio">
+                      <article id="api-Anuncio-storeAnuncio-0" data-group="User" data-name="storeAnuncio" data-version="0">
+                        <div class="pull-left">
+                          <h1>storeAnuncio</h1>
+                          <p>realiza cadastro do anuncio</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que criar um anuncio no banco de dados</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/anuncio</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Anuncio-storeAnuncio-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-storeAnuncio-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-storeAnuncio-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Anuncio-storeAnuncio-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Anuncio-storeAnuncio-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://localhost/anuncio"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AnuncioApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        
+        AnuncioApi apiInstance = new AnuncioApi();
+        Anuncio json = ; // Anuncio | são precisos os seguintes campos no arquivo JSON para criar o anuncio
+        try {
+            apiInstance.storeAnuncio(json);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#storeAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AnuncioApi;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        AnuncioApi apiInstance = new AnuncioApi();
+        Anuncio json = ; // Anuncio | são precisos os seguintes campos no arquivo JSON para criar o anuncio
+        try {
+            apiInstance.storeAnuncio(json);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#storeAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Anuncio *json = ; // são precisos os seguintes campos no arquivo JSON para criar o anuncio (optional)
+
+AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
+
+// realiza cadastro do anuncio
+[apiInstance storeAnuncioWith:json
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AnuncioApi()
+
+var opts = { 
+  'json':  // {Anuncio} são precisos os seguintes campos no arquivo JSON para criar o anuncio
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.storeAnuncio(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class storeAnuncioExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AnuncioApi();
+            var json = new Anuncio(); // Anuncio | são precisos os seguintes campos no arquivo JSON para criar o anuncio (optional) 
+
+            try
+            {
+                // realiza cadastro do anuncio
+                apiInstance.storeAnuncio(json);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AnuncioApi.storeAnuncio: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AnuncioApi();
+$json = ; // Anuncio | são precisos os seguintes campos no arquivo JSON para criar o anuncio
+
+try {
+    $api_instance->storeAnuncio($json);
+} catch (Exception $e) {
+    echo 'Exception when calling AnuncioApi->storeAnuncio: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AnuncioApi;
+
+my $api_instance = WWW::SwaggerClient::AnuncioApi->new();
+my $json = WWW::SwaggerClient::Object::Anuncio->new(); # Anuncio | são precisos os seguintes campos no arquivo JSON para criar o anuncio
+
+eval { 
+    $api_instance->storeAnuncio(json => $json);
+};
+if ($@) {
+    warn "Exception when calling AnuncioApi->storeAnuncio: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-storeAnuncio-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AnuncioApi()
+json =  # Anuncio | são precisos os seguintes campos no arquivo JSON para criar o anuncio (optional)
+
+try: 
+    # realiza cadastro do anuncio
+    api_instance.store_anuncio(json=json)
+except ApiException as e:
+    print("Exception when calling AnuncioApi->storeAnuncio: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json </td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "são precisos os seguintes campos no arquivo JSON para criar o anuncio",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/Anuncio"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_storeAnuncio_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_storeAnuncio_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Anuncio cadastrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Anuncio-updateAnuncio">
+                      <article id="api-Anuncio-updateAnuncio-0" data-group="User" data-name="updateAnuncio" data-version="0">
+                        <div class="pull-left">
+                          <h1>updateAnuncio</h1>
+                          <p>atualiza o anuncio</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que atualiza os dados do anuncio</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/anuncio/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Anuncio-updateAnuncio-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-updateAnuncio-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Anuncio-updateAnuncio-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Anuncio-updateAnuncio-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Anuncio-updateAnuncio-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://localhost/anuncio/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.AnuncioApi;
+
+import java.io.File;
+import java.util.*;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        
+        AnuncioApi apiInstance = new AnuncioApi();
+        Integer id = 56; // Integer | id do anuncio que será atualizado
+        Anuncio json = ; // Anuncio | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+        try {
+            Anuncio result = apiInstance.updateAnuncio(id, json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#updateAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.AnuncioApi;
+
+public class AnuncioApiExample {
+
+    public static void main(String[] args) {
+        AnuncioApi apiInstance = new AnuncioApi();
+        Integer id = 56; // Integer | id do anuncio que será atualizado
+        Anuncio json = ; // Anuncio | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+        try {
+            Anuncio result = apiInstance.updateAnuncio(id, json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnuncioApi#updateAnuncio");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do anuncio que será atualizado
+Anuncio *json = ; // quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional)
+
+AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
+
+// atualiza o anuncio
+[apiInstance updateAnuncioWith:id
+    json:json
+              completionHandler: ^(Anuncio output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.AnuncioApi()
+
+var id = 56; // {Integer} id do anuncio que será atualizado
+
+var opts = { 
+  'json':  // {Anuncio} quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.updateAnuncio(id, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class updateAnuncioExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new AnuncioApi();
+            var id = 56;  // Integer | id do anuncio que será atualizado
+            var json = new Anuncio(); // Anuncio | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional) 
+
+            try
+            {
+                // atualiza o anuncio
+                Anuncio result = apiInstance.updateAnuncio(id, json);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling AnuncioApi.updateAnuncio: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\AnuncioApi();
+$id = 56; // Integer | id do anuncio que será atualizado
+$json = ; // Anuncio | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+
+try {
+    $result = $api_instance->updateAnuncio($id, $json);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling AnuncioApi->updateAnuncio: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::AnuncioApi;
+
+my $api_instance = WWW::SwaggerClient::AnuncioApi->new();
+my $id = 56; # Integer | id do anuncio que será atualizado
+my $json = WWW::SwaggerClient::Object::Anuncio->new(); # Anuncio | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+
+eval { 
+    my $result = $api_instance->updateAnuncio(id => $id, json => $json);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling AnuncioApi->updateAnuncio: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Anuncio-updateAnuncio-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.AnuncioApi()
+id = 56 # Integer | id do anuncio que será atualizado
+json =  # Anuncio | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional)
+
+try: 
+    # atualiza o anuncio
+    api_response = api_instance.update_anuncio(id, json=json)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling AnuncioApi->updateAnuncio: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_updateAnuncio_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do anuncio que será atualizado
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json </td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/Anuncio"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_updateAnuncio_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_updateAnuncio_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-updateAnuncio-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-updateAnuncio-200-schema">
+                                  <div id='responses-updateAnuncio-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/Anuncio"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-updateAnuncio-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-updateAnuncio-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-updateAnuncio-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 401 - Não autorizado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Anuncio não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
                 <section id="api-AvaliacaoOfertas">
                   <h1>AvaliacaoOfertas</h1>
                     <div id="api-AvaliacaoOfertas-atualizaAvaliacaoOferta">
@@ -2768,6 +4370,1498 @@ except ApiException as e:
                       </div>
                       <hr>
                   </section>
+                <section id="api-Oferta">
+                  <h1>Oferta</h1>
+                    <div id="api-Oferta-destroyOferta">
+                      <article id="api-Oferta-destroyOferta-0" data-group="User" data-name="destroyOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>destroyOferta</h1>
+                          <p>remove a oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que remove os dados da oferta</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/oferta/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Oferta-destroyOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-destroyOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-destroyOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Oferta-destroyOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Oferta-destroyOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE "https://localhost/oferta/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Oferta-destroyOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.OfertaApi;
+
+import java.io.File;
+import java.util.*;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        
+        OfertaApi apiInstance = new OfertaApi();
+        Integer id = 56; // Integer | id da oferta que será removida
+        try {
+            apiInstance.destroyOferta(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#destroyOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Oferta-destroyOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.OfertaApi;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        OfertaApi apiInstance = new OfertaApi();
+        Integer id = 56; // Integer | id da oferta que será removida
+        try {
+            apiInstance.destroyOferta(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#destroyOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Oferta-destroyOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Oferta-destroyOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id da oferta que será removida
+
+OfertaApi *apiInstance = [[OfertaApi alloc] init];
+
+// remove a oferta
+[apiInstance destroyOfertaWith:id
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-destroyOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.OfertaApi()
+
+var id = 56; // {Integer} id da oferta que será removida
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.destroyOferta(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Oferta-destroyOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Oferta-destroyOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class destroyOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new OfertaApi();
+            var id = 56;  // Integer | id da oferta que será removida
+
+            try
+            {
+                // remove a oferta
+                apiInstance.destroyOferta(id);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OfertaApi.destroyOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-destroyOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\OfertaApi();
+$id = 56; // Integer | id da oferta que será removida
+
+try {
+    $api_instance->destroyOferta($id);
+} catch (Exception $e) {
+    echo 'Exception when calling OfertaApi->destroyOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-destroyOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::OfertaApi;
+
+my $api_instance = WWW::SwaggerClient::OfertaApi->new();
+my $id = 56; # Integer | id da oferta que será removida
+
+eval { 
+    $api_instance->destroyOferta(id => $id);
+};
+if ($@) {
+    warn "Exception when calling OfertaApi->destroyOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-destroyOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.OfertaApi()
+id = 56 # Integer | id da oferta que será removida
+
+try: 
+    # remove a oferta
+    api_instance.destroy_oferta(id)
+except ApiException as e:
+    print("Exception when calling OfertaApi->destroyOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_destroyOferta_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id da oferta que será removida
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Oferta removida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Oferta não encontrada </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servido </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Oferta-indexOferta">
+                      <article id="api-Oferta-indexOferta-0" data-group="User" data-name="indexOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>indexOferta</h1>
+                          <p>retorna todos as ofertas</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota na qual retorna dos as ofertas cadastrada no banco de dados</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/oferta</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Oferta-indexOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-indexOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-indexOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Oferta-indexOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Oferta-indexOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/oferta"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Oferta-indexOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.OfertaApi;
+
+import java.io.File;
+import java.util.*;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        
+        OfertaApi apiInstance = new OfertaApi();
+        try {
+            array[Oferta] result = apiInstance.indexOferta();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#indexOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Oferta-indexOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.OfertaApi;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        OfertaApi apiInstance = new OfertaApi();
+        try {
+            array[Oferta] result = apiInstance.indexOferta();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#indexOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Oferta-indexOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Oferta-indexOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+OfertaApi *apiInstance = [[OfertaApi alloc] init];
+
+// retorna todos as ofertas
+[apiInstance indexOfertaWithCompletionHandler: 
+              ^(array[Oferta] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-indexOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.OfertaApi()
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.indexOferta(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Oferta-indexOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Oferta-indexOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class indexOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new OfertaApi();
+
+            try
+            {
+                // retorna todos as ofertas
+                array[Oferta] result = apiInstance.indexOferta();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OfertaApi.indexOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-indexOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\OfertaApi();
+
+try {
+    $result = $api_instance->indexOferta();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OfertaApi->indexOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-indexOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::OfertaApi;
+
+my $api_instance = WWW::SwaggerClient::OfertaApi->new();
+
+eval { 
+    my $result = $api_instance->indexOferta();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling OfertaApi->indexOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-indexOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.OfertaApi()
+
+try: 
+    # retorna todos as ofertas
+    api_response = api_instance.index_oferta()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OfertaApi->indexOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-indexOferta-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-indexOferta-200-schema">
+                                  <div id='responses-indexOferta-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Oferta"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-indexOferta-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-indexOferta-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-indexOferta-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Oferta-showOferta">
+                      <article id="api-Oferta-showOferta-0" data-group="User" data-name="showOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>showOferta</h1>
+                          <p>retorna uma oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna uma oferta com o id passado</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/oferta/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Oferta-showOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Oferta-showOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Oferta-showOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-showOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Oferta-showOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Oferta-showOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-showOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Oferta-showOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Oferta-showOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Oferta-showOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Oferta-showOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Oferta-showOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/oferta/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Oferta-showOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.OfertaApi;
+
+import java.io.File;
+import java.util.*;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        
+        OfertaApi apiInstance = new OfertaApi();
+        Integer id = 56; // Integer | id da oferta que será atualizada
+        try {
+            Oferta result = apiInstance.showOferta(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#showOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Oferta-showOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.OfertaApi;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        OfertaApi apiInstance = new OfertaApi();
+        Integer id = 56; // Integer | id da oferta que será atualizada
+        try {
+            Oferta result = apiInstance.showOferta(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#showOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Oferta-showOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Oferta-showOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id da oferta que será atualizada
+
+OfertaApi *apiInstance = [[OfertaApi alloc] init];
+
+// retorna uma oferta
+[apiInstance showOfertaWith:id
+              completionHandler: ^(Oferta output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-showOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.OfertaApi()
+
+var id = 56; // {Integer} id da oferta que será atualizada
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.showOferta(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Oferta-showOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Oferta-showOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class showOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new OfertaApi();
+            var id = 56;  // Integer | id da oferta que será atualizada
+
+            try
+            {
+                // retorna uma oferta
+                Oferta result = apiInstance.showOferta(id);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OfertaApi.showOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-showOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\OfertaApi();
+$id = 56; // Integer | id da oferta que será atualizada
+
+try {
+    $result = $api_instance->showOferta($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OfertaApi->showOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-showOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::OfertaApi;
+
+my $api_instance = WWW::SwaggerClient::OfertaApi->new();
+my $id = 56; # Integer | id da oferta que será atualizada
+
+eval { 
+    my $result = $api_instance->showOferta(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling OfertaApi->showOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-showOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.OfertaApi()
+id = 56 # Integer | id da oferta que será atualizada
+
+try: 
+    # retorna uma oferta
+    api_response = api_instance.show_oferta(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OfertaApi->showOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_showOferta_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id da oferta que será atualizada
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-showOferta-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-showOferta-200-schema">
+                                  <div id='responses-showOferta-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/Oferta"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-showOferta-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-showOferta-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-showOferta-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - oferta não encontrada </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Oferta-storeOferta">
+                      <article id="api-Oferta-storeOferta-0" data-group="User" data-name="storeOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>storeOferta</h1>
+                          <p>realiza cadastro da oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que criar uma oferta no banco de dados</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/oferta</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Oferta-storeOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-storeOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-storeOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Oferta-storeOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Oferta-storeOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://localhost/oferta"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Oferta-storeOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.OfertaApi;
+
+import java.io.File;
+import java.util.*;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        
+        OfertaApi apiInstance = new OfertaApi();
+        Oferta json = ; // Oferta | são precisos os seguintes campos no arquivo JSON para criar a oferta
+        try {
+            apiInstance.storeOferta(json);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#storeOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Oferta-storeOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.OfertaApi;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        OfertaApi apiInstance = new OfertaApi();
+        Oferta json = ; // Oferta | são precisos os seguintes campos no arquivo JSON para criar a oferta
+        try {
+            apiInstance.storeOferta(json);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#storeOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Oferta-storeOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Oferta-storeOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Oferta *json = ; // são precisos os seguintes campos no arquivo JSON para criar a oferta (optional)
+
+OfertaApi *apiInstance = [[OfertaApi alloc] init];
+
+// realiza cadastro da oferta
+[apiInstance storeOfertaWith:json
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-storeOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.OfertaApi()
+
+var opts = { 
+  'json':  // {Oferta} são precisos os seguintes campos no arquivo JSON para criar a oferta
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.storeOferta(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Oferta-storeOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Oferta-storeOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class storeOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new OfertaApi();
+            var json = new Oferta(); // Oferta | são precisos os seguintes campos no arquivo JSON para criar a oferta (optional) 
+
+            try
+            {
+                // realiza cadastro da oferta
+                apiInstance.storeOferta(json);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OfertaApi.storeOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-storeOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\OfertaApi();
+$json = ; // Oferta | são precisos os seguintes campos no arquivo JSON para criar a oferta
+
+try {
+    $api_instance->storeOferta($json);
+} catch (Exception $e) {
+    echo 'Exception when calling OfertaApi->storeOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-storeOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::OfertaApi;
+
+my $api_instance = WWW::SwaggerClient::OfertaApi->new();
+my $json = WWW::SwaggerClient::Object::Oferta->new(); # Oferta | são precisos os seguintes campos no arquivo JSON para criar a oferta
+
+eval { 
+    $api_instance->storeOferta(json => $json);
+};
+if ($@) {
+    warn "Exception when calling OfertaApi->storeOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-storeOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.OfertaApi()
+json =  # Oferta | são precisos os seguintes campos no arquivo JSON para criar a oferta (optional)
+
+try: 
+    # realiza cadastro da oferta
+    api_instance.store_oferta(json=json)
+except ApiException as e:
+    print("Exception when calling OfertaApi->storeOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json </td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "são precisos os seguintes campos no arquivo JSON para criar a oferta",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/Oferta"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_storeOferta_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_storeOferta_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Oferta cadastrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Oferta-updateOferta">
+                      <article id="api-Oferta-updateOferta-0" data-group="User" data-name="updateOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>updateOferta</h1>
+                          <p>atualiza a oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que atualiza os dados da oferta</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="put"><code><span class="pln">/oferta/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Oferta-updateOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-updateOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Oferta-updateOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Oferta-updateOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Oferta-updateOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X PUT "https://localhost/oferta/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Oferta-updateOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.OfertaApi;
+
+import java.io.File;
+import java.util.*;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        
+        OfertaApi apiInstance = new OfertaApi();
+        Integer id = 56; // Integer | id da oferta que será atualizada
+        Oferta json = ; // Oferta | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+        try {
+            Oferta result = apiInstance.updateOferta(id, json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#updateOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Oferta-updateOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.OfertaApi;
+
+public class OfertaApiExample {
+
+    public static void main(String[] args) {
+        OfertaApi apiInstance = new OfertaApi();
+        Integer id = 56; // Integer | id da oferta que será atualizada
+        Oferta json = ; // Oferta | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+        try {
+            Oferta result = apiInstance.updateOferta(id, json);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling OfertaApi#updateOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Oferta-updateOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Oferta-updateOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id da oferta que será atualizada
+Oferta *json = ; // quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional)
+
+OfertaApi *apiInstance = [[OfertaApi alloc] init];
+
+// atualiza a oferta
+[apiInstance updateOfertaWith:id
+    json:json
+              completionHandler: ^(Oferta output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-updateOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.OfertaApi()
+
+var id = 56; // {Integer} id da oferta que será atualizada
+
+var opts = { 
+  'json':  // {Oferta} quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.updateOferta(id, opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Oferta-updateOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Oferta-updateOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class updateOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new OfertaApi();
+            var id = 56;  // Integer | id da oferta que será atualizada
+            var json = new Oferta(); // Oferta | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional) 
+
+            try
+            {
+                // atualiza a oferta
+                Oferta result = apiInstance.updateOferta(id, json);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling OfertaApi.updateOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-updateOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\OfertaApi();
+$id = 56; // Integer | id da oferta que será atualizada
+$json = ; // Oferta | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+
+try {
+    $result = $api_instance->updateOferta($id, $json);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling OfertaApi->updateOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-updateOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::OfertaApi;
+
+my $api_instance = WWW::SwaggerClient::OfertaApi->new();
+my $id = 56; # Integer | id da oferta que será atualizada
+my $json = WWW::SwaggerClient::Object::Oferta->new(); # Oferta | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
+
+eval { 
+    my $result = $api_instance->updateOferta(id => $id, json => $json);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling OfertaApi->updateOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Oferta-updateOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.OfertaApi()
+id = 56 # Integer | id da oferta que será atualizada
+json =  # Oferta | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional)
+
+try: 
+    # atualiza a oferta
+    api_response = api_instance.update_oferta(id, json=json)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling OfertaApi->updateOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_updateOferta_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id da oferta que será atualizada
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json </td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/Oferta"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_updateOferta_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_updateOferta_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-updateOferta-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-updateOferta-200-schema">
+                                  <div id='responses-updateOferta-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/Oferta"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-updateOferta-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-updateOferta-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-updateOferta-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 401 - Não autorizado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - oferta não encontrada </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
                 <section id="api-SessionsAutenticao">
                   <h1>SessionsAutenticao</h1>
                     <div id="api-SessionsAutenticao-autenticaUsuario">
@@ -3630,10 +6724,10 @@ except ApiException as e:
                         <div class="pull-right"></div>
                         <div class="clearfix"></div>
                         <p></p>
-                        <p class="marked">rota que retorna uma usuario</p>
+                        <p class="marked">rota que retorna um usuario</p>
                         <p></p>
                         <br />
-                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/:username</span></code></pre>
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/username/:username</span></code></pre>
                         <p>
                           <h3>Usage and SDK Samples</h3>
                         </p>
@@ -3653,7 +6747,7 @@ except ApiException as e:
 
                         <div class="tab-content">
                           <div class="tab-pane active" id="examples-Users-show-0-curl">
-                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/users/:username"</code></pre>
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/users/username/:username"</code></pre>
                           </div>
                           <div class="tab-pane" id="examples-Users-show-0-java">
                             <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
@@ -3907,6 +7001,322 @@ except ApiException as e:
                                     </script>
                                   </div>
                                   <input id='responses-show-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - usuario não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Users-showID">
+                      <article id="api-Users-showID-0" data-group="User" data-name="showID" data-version="0">
+                        <div class="pull-left">
+                          <h1>showID</h1>
+                          <p>retorna um usuario</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna um usuario</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/users/id/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Users-showID-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Users-showID-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Users-showID-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Users-showID-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Users-showID-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Users-showID-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Users-showID-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Users-showID-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Users-showID-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Users-showID-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Users-showID-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Users-showID-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/users/id/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Users-showID-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.UsersApi;
+
+import java.io.File;
+import java.util.*;
+
+public class UsersApiExample {
+
+    public static void main(String[] args) {
+        
+        UsersApi apiInstance = new UsersApi();
+        Integer id = 56; // Integer | id do usuario que será atualizado
+        try {
+            User result = apiInstance.showID(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UsersApi#showID");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Users-showID-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.UsersApi;
+
+public class UsersApiExample {
+
+    public static void main(String[] args) {
+        UsersApi apiInstance = new UsersApi();
+        Integer id = 56; // Integer | id do usuario que será atualizado
+        try {
+            User result = apiInstance.showID(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling UsersApi#showID");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Users-showID-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Users-showID-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do usuario que será atualizado
+
+UsersApi *apiInstance = [[UsersApi alloc] init];
+
+// retorna um usuario
+[apiInstance showIDWith:id
+              completionHandler: ^(User output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Users-showID-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.UsersApi()
+
+var id = 56; // {Integer} id do usuario que será atualizado
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.showID(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Users-showID-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Users-showID-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class showIDExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new UsersApi();
+            var id = 56;  // Integer | id do usuario que será atualizado
+
+            try
+            {
+                // retorna um usuario
+                User result = apiInstance.showID(id);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling UsersApi.showID: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Users-showID-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\UsersApi();
+$id = 56; // Integer | id do usuario que será atualizado
+
+try {
+    $result = $api_instance->showID($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling UsersApi->showID: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Users-showID-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::UsersApi;
+
+my $api_instance = WWW::SwaggerClient::UsersApi->new();
+my $id = 56; # Integer | id do usuario que será atualizado
+
+eval { 
+    my $result = $api_instance->showID(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling UsersApi->showID: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Users-showID-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.UsersApi()
+id = 56 # Integer | id do usuario que será atualizado
+
+try: 
+    # retorna um usuario
+    api_response = api_instance.show_id(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling UsersApi->showID: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_showID_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do usuario que será atualizado
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-showID-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-showID-200-schema">
+                                  <div id='responses-showID-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/User"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-showID-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-showID-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-showID-200-schema-data' type='hidden' value=''></input>
                                 </div>
                             </div>
 
@@ -4255,9 +7665,9 @@ public class UsersApiExample {
         
         UsersApi apiInstance = new UsersApi();
         String username = username_example; // String | username do usuario que será atualizado
-        User username2 = ; // User | username que será atualizado
+        User json = ; // User | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
         try {
-            User result = apiInstance.update(username, username2);
+            User result = apiInstance.update(username, json);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#update");
@@ -4275,9 +7685,9 @@ public class UsersApiExample {
     public static void main(String[] args) {
         UsersApi apiInstance = new UsersApi();
         String username = username_example; // String | username do usuario que será atualizado
-        User username2 = ; // User | username que será atualizado
+        User json = ; // User | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
         try {
-            User result = apiInstance.update(username, username2);
+            User result = apiInstance.update(username, json);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling UsersApi#update");
@@ -4292,13 +7702,13 @@ public class UsersApiExample {
   </div> -->
                             <div class="tab-pane" id="examples-Users-update-0-objc">
                               <pre class="prettyprint"><code class="language-cpp">String *username = username_example; // username do usuario que será atualizado
-User *username2 = ; // username que será atualizado (optional)
+User *json = ; // quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional)
 
 UsersApi *apiInstance = [[UsersApi alloc] init];
 
 // atualiza o usuario
 [apiInstance updateWith:username
-    username2:username2
+    json:json
               completionHandler: ^(User output, NSError* error) {
                             if (output) {
                                 NSLog(@"%@", output);
@@ -4318,7 +7728,7 @@ var api = new IRentBackDocumentao.UsersApi()
 var username = username_example; // {String} username do usuario que será atualizado
 
 var opts = { 
-  'username2':  // {User} username que será atualizado
+  'json':  // {User} quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
 };
 
 var callback = function(error, data, response) {
@@ -4351,12 +7761,12 @@ namespace Example
             
             var apiInstance = new UsersApi();
             var username = username_example;  // String | username do usuario que será atualizado
-            var username2 = new User(); // User | username que será atualizado (optional) 
+            var json = new User(); // User | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional) 
 
             try
             {
                 // atualiza o usuario
-                User result = apiInstance.update(username, username2);
+                User result = apiInstance.update(username, json);
                 Debug.WriteLine(result);
             }
             catch (Exception e)
@@ -4375,10 +7785,10 @@ require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\UsersApi();
 $username = username_example; // String | username do usuario que será atualizado
-$username2 = ; // User | username que será atualizado
+$json = ; // User | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
 
 try {
-    $result = $api_instance->update($username, $username2);
+    $result = $api_instance->update($username, $json);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling UsersApi->update: ', $e->getMessage(), PHP_EOL;
@@ -4393,10 +7803,10 @@ use WWW::SwaggerClient::UsersApi;
 
 my $api_instance = WWW::SwaggerClient::UsersApi->new();
 my $username = username_example; # String | username do usuario que será atualizado
-my $username2 = WWW::SwaggerClient::Object::User->new(); # User | username que será atualizado
+my $json = WWW::SwaggerClient::Object::User->new(); # User | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados
 
 eval { 
-    my $result = $api_instance->update(username => $username, username2 => $username2);
+    my $result = $api_instance->update(username => $username, json => $json);
     print Dumper($result);
 };
 if ($@) {
@@ -4414,11 +7824,11 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.UsersApi()
 username = username_example # String | username do usuario que será atualizado
-username2 =  # User | username que será atualizado (optional)
+json =  # User | quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados (optional)
 
 try: 
     # atualiza o usuario
-    api_response = api_instance.update(username, username2=username2)
+    api_response = api_instance.update(username, json=json)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling UsersApi->update: %s\n" % e)</code></pre>
@@ -4465,7 +7875,7 @@ except ApiException as e:
                                 <th width="150px">Name</th>
                                 <th>Description</th>
                               </tr>
-                                <tr><td style="width:150px;">username2 </td>
+                                <tr><td style="width:150px;">json </td>
 <td>
 
 
@@ -4473,8 +7883,8 @@ except ApiException as e:
 $(document).ready(function() {
   var schemaWrapper = {
   "in" : "body",
-  "name" : "username",
-  "description" : "username que será atualizado",
+  "name" : "json",
+  "description" : "quaisquer dos seguintes campos no arquivo JSON pode ser usado para ser atualizados",
   "required" : false,
   "schema" : {
     "$ref" : "#/definitions/User"
@@ -4491,12 +7901,12 @@ $(document).ready(function() {
   }
 
   var view = new JSONSchemaView(schema,2,{isBodyParam: true});
-  var result = $('#d2e199_update_username2');
+  var result = $('#d2e199_update_json');
   result.empty();
   result.append(view.render());
 });
 </script>
-<div id="d2e199_update_username2"></div>
+<div id="d2e199_update_json"></div>
 </td>
 </tr>
 
@@ -4564,7 +7974,7 @@ $(document).ready(function() {
                             <div class="tab-content" style='margin-bottom: 10px;'>
                             </div>
 
-                            <h3> Status: 404 - usuario não encontrado </h3>
+                            <h3> Status: 404 - Usuario não encontrado </h3>
 
                             <ul class="nav nav-tabs nav-tabs-examples" >
                             </ul>
