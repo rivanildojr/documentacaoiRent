@@ -1098,6 +1098,26 @@ margin-bottom: 20px;
     }
   }
 };
+        defs["Notificacao"] = {
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "type" : "integer",
+      "example" : 1,
+      "description" : "id da notificacao"
+    },
+    "user_id" : {
+      "type" : "integer",
+      "example" : 10,
+      "description" : "id do usuario que está interessado na oferta"
+    },
+    "oferta_id" : {
+      "type" : "integer",
+      "example" : 4,
+      "description" : "id da oferta que teve um oferta"
+    }
+  }
+};
         defs["Oferta"] = {
   "type" : "object",
   "required" : [ "descricao", "endereco_id", "preco", "telefone", "titulo", "user_id" ],
@@ -1277,6 +1297,25 @@ margin-bottom: 20px;
                     </li>
                     <li data-group="EnderecoOferta" data-name="getEnderecoOferta" class="">
                       <a href="#api-EnderecoOferta-getEnderecoOferta">getEnderecoOferta</a>
+                    </li>
+                  <li class="nav-header" data-group="Interesse"><a href="#api-Interesse">API Methods - Interesse</a></li>
+                    <li data-group="Interesse" data-name="destroyAInteresse" class="">
+                      <a href="#api-Interesse-destroyAInteresse">destroyAInteresse</a>
+                    </li>
+                    <li data-group="Interesse" data-name="getInteresse" class="">
+                      <a href="#api-Interesse-getInteresse">getInteresse</a>
+                    </li>
+                    <li data-group="Interesse" data-name="getInteresseOferta" class="">
+                      <a href="#api-Interesse-getInteresseOferta">getInteresseOferta</a>
+                    </li>
+                    <li data-group="Interesse" data-name="indexInteresse" class="">
+                      <a href="#api-Interesse-indexInteresse">indexInteresse</a>
+                    </li>
+                    <li data-group="Interesse" data-name="showInteresse" class="">
+                      <a href="#api-Interesse-showInteresse">showInteresse</a>
+                    </li>
+                    <li data-group="Interesse" data-name="storeInteresse" class="">
+                      <a href="#api-Interesse-storeInteresse">storeInteresse</a>
                     </li>
                   <li class="nav-header" data-group="Oferta"><a href="#api-Oferta">API Methods - Oferta</a></li>
                     <li data-group="Oferta" data-name="destroyOferta" class="">
@@ -2233,7 +2272,7 @@ public class AnuncioApiExample {
     public static void main(String[] args) {
         
         AnuncioApi apiInstance = new AnuncioApi();
-        Integer id = 56; // Integer | id do anuncio que será atualizado
+        Integer id = 56; // Integer | id do anuncio que será retornado
         try {
             Anuncio result = apiInstance.showAnuncio(id);
             System.out.println(result);
@@ -2252,7 +2291,7 @@ public class AnuncioApiExample {
 
     public static void main(String[] args) {
         AnuncioApi apiInstance = new AnuncioApi();
-        Integer id = 56; // Integer | id do anuncio que será atualizado
+        Integer id = 56; // Integer | id do anuncio que será retornado
         try {
             Anuncio result = apiInstance.showAnuncio(id);
             System.out.println(result);
@@ -2268,7 +2307,7 @@ public class AnuncioApiExample {
   <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
   </div> -->
                             <div class="tab-pane" id="examples-Anuncio-showAnuncio-0-objc">
-                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do anuncio que será atualizado
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do anuncio que será retornado
 
 AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
 
@@ -2290,7 +2329,7 @@ AnuncioApi *apiInstance = [[AnuncioApi alloc] init];
 
 var api = new IRentBackDocumentao.AnuncioApi()
 
-var id = 56; // {Integer} id do anuncio que será atualizado
+var id = 56; // {Integer} id do anuncio que será retornado
 
 
 var callback = function(error, data, response) {
@@ -2322,7 +2361,7 @@ namespace Example
         {
             
             var apiInstance = new AnuncioApi();
-            var id = 56;  // Integer | id do anuncio que será atualizado
+            var id = 56;  // Integer | id do anuncio que será retornado
 
             try
             {
@@ -2345,7 +2384,7 @@ namespace Example
 require_once(__DIR__ . '/vendor/autoload.php');
 
 $api_instance = new Swagger\Client\Api\AnuncioApi();
-$id = 56; // Integer | id do anuncio que será atualizado
+$id = 56; // Integer | id do anuncio que será retornado
 
 try {
     $result = $api_instance->showAnuncio($id);
@@ -2362,7 +2401,7 @@ use WWW::SwaggerClient::Configuration;
 use WWW::SwaggerClient::AnuncioApi;
 
 my $api_instance = WWW::SwaggerClient::AnuncioApi->new();
-my $id = 56; # Integer | id do anuncio que será atualizado
+my $id = 56; # Integer | id do anuncio que será retornado
 
 eval { 
     my $result = $api_instance->showAnuncio(id => $id);
@@ -2382,7 +2421,7 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = swagger_client.AnuncioApi()
-id = 56 # Integer | id do anuncio que será atualizado
+id = 56 # Integer | id do anuncio que será retornado
 
 try: 
     # retorna um anuncio
@@ -2413,7 +2452,7 @@ except ApiException as e:
                 </span>
 
                     <div class="inner description">
-                        id do anuncio que será atualizado
+                        id do anuncio que será retornado
                     </div>
             </div>
                 <div class="inner required">
@@ -8555,6 +8594,1794 @@ except ApiException as e:
                                   </div>
                                   <input id='responses-getEnderecoOferta-200-schema-data' type='hidden' value=''></input>
                                 </div>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                  </section>
+                <section id="api-Interesse">
+                  <h1>Interesse</h1>
+                    <div id="api-Interesse-destroyAInteresse">
+                      <article id="api-Interesse-destroyAInteresse-0" data-group="User" data-name="destroyAInteresse" data-version="0">
+                        <div class="pull-left">
+                          <h1>destroyAInteresse</h1>
+                          <p>remove o interesse</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que remove os dados do interesse</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="delete"><code><span class="pln">/interesse/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Interesse-destroyAInteresse-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-destroyAInteresse-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-destroyAInteresse-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Interesse-destroyAInteresse-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Interesse-destroyAInteresse-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X DELETE "https://localhost/interesse/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InteresseApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        
+        InteresseApi apiInstance = new InteresseApi();
+        Integer id = 56; // Integer | id do interesse que será removido
+        try {
+            apiInstance.destroyAInteresse(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#destroyAInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InteresseApi;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        InteresseApi apiInstance = new InteresseApi();
+        Integer id = 56; // Integer | id do interesse que será removido
+        try {
+            apiInstance.destroyAInteresse(id);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#destroyAInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do interesse que será removido
+
+InteresseApi *apiInstance = [[InteresseApi alloc] init];
+
+// remove o interesse
+[apiInstance destroyAInteresseWith:id
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.InteresseApi()
+
+var id = 56; // {Integer} id do interesse que será removido
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.destroyAInteresse(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class destroyAInteresseExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new InteresseApi();
+            var id = 56;  // Integer | id do interesse que será removido
+
+            try
+            {
+                // remove o interesse
+                apiInstance.destroyAInteresse(id);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteresseApi.destroyAInteresse: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\InteresseApi();
+$id = 56; // Integer | id do interesse que será removido
+
+try {
+    $api_instance->destroyAInteresse($id);
+} catch (Exception $e) {
+    echo 'Exception when calling InteresseApi->destroyAInteresse: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InteresseApi;
+
+my $api_instance = WWW::SwaggerClient::InteresseApi->new();
+my $id = 56; # Integer | id do interesse que será removido
+
+eval { 
+    $api_instance->destroyAInteresse(id => $id);
+};
+if ($@) {
+    warn "Exception when calling InteresseApi->destroyAInteresse: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-destroyAInteresse-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InteresseApi()
+id = 56 # Integer | id do interesse que será removido
+
+try: 
+    # remove o interesse
+    api_instance.destroy_a_interesse(id)
+except ApiException as e:
+    print("Exception when calling InteresseApi->destroyAInteresse: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_destroyAInteresse_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do interesse que será removido
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - Interesse removido </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Interesse não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servido </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Interesse-getInteresse">
+                      <article id="api-Interesse-getInteresse-0" data-group="User" data-name="getInteresse" data-version="0">
+                        <div class="pull-left">
+                          <h1>getInteresse</h1>
+                          <p>retorna todas os interesse do usuario</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna todos anuncios com o id do usuario passado</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/interesse/:idUser/user</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Interesse-getInteresse-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-getInteresse-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-getInteresse-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresse-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Interesse-getInteresse-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/interesse/:idUser/user"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Interesse-getInteresse-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InteresseApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        
+        InteresseApi apiInstance = new InteresseApi();
+        Integer idUser = 56; // Integer | id do usuario que será exibido os anuncios
+        try {
+            User result = apiInstance.getInteresse(idUser);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#getInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Interesse-getInteresse-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InteresseApi;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        InteresseApi apiInstance = new InteresseApi();
+        Integer idUser = 56; // Integer | id do usuario que será exibido os anuncios
+        try {
+            User result = apiInstance.getInteresse(idUser);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#getInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Interesse-getInteresse-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Interesse-getInteresse-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *idUser = 56; // id do usuario que será exibido os anuncios
+
+InteresseApi *apiInstance = [[InteresseApi alloc] init];
+
+// retorna todas os interesse do usuario
+[apiInstance getInteresseWith:idUser
+              completionHandler: ^(User output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresse-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.InteresseApi()
+
+var idUser = 56; // {Integer} id do usuario que será exibido os anuncios
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getInteresse(idUser, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Interesse-getInteresse-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Interesse-getInteresse-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getInteresseExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new InteresseApi();
+            var idUser = 56;  // Integer | id do usuario que será exibido os anuncios
+
+            try
+            {
+                // retorna todas os interesse do usuario
+                User result = apiInstance.getInteresse(idUser);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteresseApi.getInteresse: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresse-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\InteresseApi();
+$idUser = 56; // Integer | id do usuario que será exibido os anuncios
+
+try {
+    $result = $api_instance->getInteresse($idUser);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InteresseApi->getInteresse: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresse-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InteresseApi;
+
+my $api_instance = WWW::SwaggerClient::InteresseApi->new();
+my $idUser = 56; # Integer | id do usuario que será exibido os anuncios
+
+eval { 
+    my $result = $api_instance->getInteresse(idUser => $idUser);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling InteresseApi->getInteresse: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresse-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InteresseApi()
+idUser = 56 # Integer | id do usuario que será exibido os anuncios
+
+try: 
+    # retorna todas os interesse do usuario
+    api_response = api_instance.get_interesse(idUser)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InteresseApi->getInteresse: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">idUser*</td>
+<td>
+
+
+    <div id="d2e199_getInteresse_idUser">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do usuario que será exibido os anuncios
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getInteresse-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getInteresse-200-schema">
+                                  <div id='responses-getInteresse-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/User"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getInteresse-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getInteresse-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getInteresse-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Interesse não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Interesse-getInteresseOferta">
+                      <article id="api-Interesse-getInteresseOferta-0" data-group="User" data-name="getInteresseOferta" data-version="0">
+                        <div class="pull-left">
+                          <h1>getInteresseOferta</h1>
+                          <p>retorna todas os interesse do usuario e da oferta</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna todos os interesses da oferta passada do usuario passado</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/interesse/:idUser/user/:idOferta/oferta</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Interesse-getInteresseOferta-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-getInteresseOferta-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-getInteresseOferta-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Interesse-getInteresseOferta-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Interesse-getInteresseOferta-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/interesse/:idUser/user/:idOferta/oferta"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InteresseApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        
+        InteresseApi apiInstance = new InteresseApi();
+        Integer idUser = 56; // Integer | id do usuario que será exibido os interesse
+        Integer idOferta = 56; // Integer | id da oferta que será exibido os anuncios
+        try {
+            User result = apiInstance.getInteresseOferta(idUser, idOferta);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#getInteresseOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InteresseApi;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        InteresseApi apiInstance = new InteresseApi();
+        Integer idUser = 56; // Integer | id do usuario que será exibido os interesse
+        Integer idOferta = 56; // Integer | id da oferta que será exibido os anuncios
+        try {
+            User result = apiInstance.getInteresseOferta(idUser, idOferta);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#getInteresseOferta");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *idUser = 56; // id do usuario que será exibido os interesse
+Integer *idOferta = 56; // id da oferta que será exibido os anuncios
+
+InteresseApi *apiInstance = [[InteresseApi alloc] init];
+
+// retorna todas os interesse do usuario e da oferta
+[apiInstance getInteresseOfertaWith:idUser
+    idOferta:idOferta
+              completionHandler: ^(User output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.InteresseApi()
+
+var idUser = 56; // {Integer} id do usuario que será exibido os interesse
+
+var idOferta = 56; // {Integer} id da oferta que será exibido os anuncios
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.getInteresseOferta(idUser, idOferta, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class getInteresseOfertaExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new InteresseApi();
+            var idUser = 56;  // Integer | id do usuario que será exibido os interesse
+            var idOferta = 56;  // Integer | id da oferta que será exibido os anuncios
+
+            try
+            {
+                // retorna todas os interesse do usuario e da oferta
+                User result = apiInstance.getInteresseOferta(idUser, idOferta);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteresseApi.getInteresseOferta: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\InteresseApi();
+$idUser = 56; // Integer | id do usuario que será exibido os interesse
+$idOferta = 56; // Integer | id da oferta que será exibido os anuncios
+
+try {
+    $result = $api_instance->getInteresseOferta($idUser, $idOferta);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InteresseApi->getInteresseOferta: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InteresseApi;
+
+my $api_instance = WWW::SwaggerClient::InteresseApi->new();
+my $idUser = 56; # Integer | id do usuario que será exibido os interesse
+my $idOferta = 56; # Integer | id da oferta que será exibido os anuncios
+
+eval { 
+    my $result = $api_instance->getInteresseOferta(idUser => $idUser, idOferta => $idOferta);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling InteresseApi->getInteresseOferta: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-getInteresseOferta-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InteresseApi()
+idUser = 56 # Integer | id do usuario que será exibido os interesse
+idOferta = 56 # Integer | id da oferta que será exibido os anuncios
+
+try: 
+    # retorna todas os interesse do usuario e da oferta
+    api_response = api_instance.get_interesse_oferta(idUser, idOferta)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InteresseApi->getInteresseOferta: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">idUser*</td>
+<td>
+
+
+    <div id="d2e199_getInteresseOferta_idUser">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do usuario que será exibido os interesse
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                                  <tr><td style="width:150px;">idOferta*</td>
+<td>
+
+
+    <div id="d2e199_getInteresseOferta_idOferta">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id da oferta que será exibido os anuncios
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-getInteresseOferta-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-getInteresseOferta-200-schema">
+                                  <div id='responses-getInteresseOferta-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/User"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-getInteresseOferta-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-getInteresseOferta-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-getInteresseOferta-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Interesse não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Interesse-indexInteresse">
+                      <article id="api-Interesse-indexInteresse-0" data-group="User" data-name="indexInteresse" data-version="0">
+                        <div class="pull-left">
+                          <h1>indexInteresse</h1>
+                          <p>retorna todos os interesse</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota na qual retorna dos os interesse cadastrado no banco de dados</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/interesse</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Interesse-indexInteresse-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-indexInteresse-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-indexInteresse-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Interesse-indexInteresse-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Interesse-indexInteresse-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/interesse"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Interesse-indexInteresse-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InteresseApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        
+        InteresseApi apiInstance = new InteresseApi();
+        try {
+            array[Notificacao] result = apiInstance.indexInteresse();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#indexInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Interesse-indexInteresse-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InteresseApi;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        InteresseApi apiInstance = new InteresseApi();
+        try {
+            array[Notificacao] result = apiInstance.indexInteresse();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#indexInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Interesse-indexInteresse-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Interesse-indexInteresse-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">
+InteresseApi *apiInstance = [[InteresseApi alloc] init];
+
+// retorna todos os interesse
+[apiInstance indexInteresseWithCompletionHandler: 
+              ^(array[Notificacao] output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-indexInteresse-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.InteresseApi()
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.indexInteresse(callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Interesse-indexInteresse-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Interesse-indexInteresse-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class indexInteresseExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new InteresseApi();
+
+            try
+            {
+                // retorna todos os interesse
+                array[Notificacao] result = apiInstance.indexInteresse();
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteresseApi.indexInteresse: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-indexInteresse-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\InteresseApi();
+
+try {
+    $result = $api_instance->indexInteresse();
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InteresseApi->indexInteresse: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-indexInteresse-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InteresseApi;
+
+my $api_instance = WWW::SwaggerClient::InteresseApi->new();
+
+eval { 
+    my $result = $api_instance->indexInteresse();
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling InteresseApi->indexInteresse: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-indexInteresse-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InteresseApi()
+
+try: 
+    # retorna todos os interesse
+    api_response = api_instance.index_interesse()
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InteresseApi->indexInteresse: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-indexInteresse-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-indexInteresse-200-schema">
+                                  <div id='responses-indexInteresse-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "type" : "array",
+    "items" : {
+      "$ref" : "#/definitions/Notificacao"
+    }
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-indexInteresse-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-indexInteresse-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-indexInteresse-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Interesse-showInteresse">
+                      <article id="api-Interesse-showInteresse-0" data-group="User" data-name="showInteresse" data-version="0">
+                        <div class="pull-left">
+                          <h1>showInteresse</h1>
+                          <p>retorna um interesse</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que retorna um interesse com o id passado</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="get"><code><span class="pln">/interesse/:id</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Interesse-showInteresse-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-showInteresse-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-showInteresse-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Interesse-showInteresse-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Interesse-showInteresse-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X GET "https://localhost/interesse/:id"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Interesse-showInteresse-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InteresseApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        
+        InteresseApi apiInstance = new InteresseApi();
+        Integer id = 56; // Integer | id do interesse que será retornado
+        try {
+            Notificacao result = apiInstance.showInteresse(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#showInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Interesse-showInteresse-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InteresseApi;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        InteresseApi apiInstance = new InteresseApi();
+        Integer id = 56; // Integer | id do interesse que será retornado
+        try {
+            Notificacao result = apiInstance.showInteresse(id);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#showInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Interesse-showInteresse-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Interesse-showInteresse-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Integer *id = 56; // id do interesse que será retornado
+
+InteresseApi *apiInstance = [[InteresseApi alloc] init];
+
+// retorna um interesse
+[apiInstance showInteresseWith:id
+              completionHandler: ^(Notificacao output, NSError* error) {
+                            if (output) {
+                                NSLog(@"%@", output);
+                            }
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-showInteresse-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.InteresseApi()
+
+var id = 56; // {Integer} id do interesse que será retornado
+
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully. Returned data: ' + data);
+  }
+};
+api.showInteresse(id, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Interesse-showInteresse-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Interesse-showInteresse-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class showInteresseExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new InteresseApi();
+            var id = 56;  // Integer | id do interesse que será retornado
+
+            try
+            {
+                // retorna um interesse
+                Notificacao result = apiInstance.showInteresse(id);
+                Debug.WriteLine(result);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteresseApi.showInteresse: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-showInteresse-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\InteresseApi();
+$id = 56; // Integer | id do interesse que será retornado
+
+try {
+    $result = $api_instance->showInteresse($id);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling InteresseApi->showInteresse: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-showInteresse-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InteresseApi;
+
+my $api_instance = WWW::SwaggerClient::InteresseApi->new();
+my $id = 56; # Integer | id do interesse que será retornado
+
+eval { 
+    my $result = $api_instance->showInteresse(id => $id);
+    print Dumper($result);
+};
+if ($@) {
+    warn "Exception when calling InteresseApi->showInteresse: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-showInteresse-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InteresseApi()
+id = 56 # Integer | id do interesse que será retornado
+
+try: 
+    # retorna um interesse
+    api_response = api_instance.show_interesse(id)
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling InteresseApi->showInteresse: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+                            <div class="methodsubtabletitle">Path parameters</div>
+                            <table id="methodsubtable">
+                                <tr>
+                                  <th width="150px">Name</th>
+                                  <th>Description</th>
+                                </tr>
+                                  <tr><td style="width:150px;">id*</td>
+<td>
+
+
+    <div id="d2e199_showInteresse_id">
+        <div class="json-schema-view">
+            <div class="primitive">
+                <span class="type">
+                    Integer
+                </span>
+
+                    <div class="inner description">
+                        id do interesse que será retornado
+                    </div>
+            </div>
+                <div class="inner required">
+                    Required
+                </div>
+        </div>
+    </div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 200 - operação realizada com sucesso </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                                <li class="active">
+                                  <a data-toggle="tab" href="#responses-showInteresse-200-schema">Schema</a>
+                                </li>
+
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                                <div class="tab-pane active" id="responses-showInteresse-200-schema">
+                                  <div id='responses-showInteresse-200-schema-200' style="padding: 30px; border-left: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee;">
+                                    <script>
+                                      $(document).ready(function() {
+                                        var schemaWrapper = {
+  "description" : "operação realizada com sucesso",
+  "schema" : {
+    "$ref" : "#/definitions/Notificacao"
+  }
+};
+                                        var schema = schemaWrapper.schema;
+                                        if (schema.$ref != null) {
+                                          schema = defsParser.$refs.get(schema.$ref);
+                                        } else {
+                                          schemaWrapper.definitions = defs;
+                                          $RefParser.dereference(schemaWrapper).catch(function(err) {
+                                            console.log(err);
+                                          });
+                                        }
+
+                                        //console.log(JSON.stringify(schema));
+                                        var view = new JSONSchemaView(schema, 3);
+                                        $('#responses-showInteresse-200-schema-data').val(stringify(schema));
+                                        var result = $('#responses-showInteresse-200-schema-200');
+                                        result.empty();
+                                        result.append(view.render());
+                                      });
+                                    </script>
+                                  </div>
+                                  <input id='responses-showInteresse-200-schema-data' type='hidden' value=''></input>
+                                </div>
+                            </div>
+
+                            <h3> Status: 400 - requisição invalida </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 404 - Interesse não encontrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                        </article>
+                      </div>
+                      <hr>
+                    <div id="api-Interesse-storeInteresse">
+                      <article id="api-Interesse-storeInteresse-0" data-group="User" data-name="storeInteresse" data-version="0">
+                        <div class="pull-left">
+                          <h1>storeInteresse</h1>
+                          <p>realiza cadastro da notificacao</p>
+                        </div>
+                        <div class="pull-right"></div>
+                        <div class="clearfix"></div>
+                        <p></p>
+                        <p class="marked">rota que criar um interesse no banco de dados</p>
+                        <p></p>
+                        <br />
+                        <pre class="prettyprint language-html prettyprinted" data-type="post"><code><span class="pln">/interesse</span></code></pre>
+                        <p>
+                          <h3>Usage and SDK Samples</h3>
+                        </p>
+                        <ul class="nav nav-tabs nav-tabs-examples">
+                          <li class="active"><a href="#examples-Interesse-storeInteresse-0-curl">Curl</a></li>
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-java">Java</a></li>
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-android">Android</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-storeInteresse-0-groovy">Groovy</a></li>-->
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-objc">Obj-C</a></li>
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-javascript">JavaScript</a></li>
+                          <!--<li class=""><a href="#examples-Interesse-storeInteresse-0-angular">Angular</a></li>-->
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-csharp">C#</a></li>
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-php">PHP</a></li>
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-perl">Perl</a></li>
+                          <li class=""><a href="#examples-Interesse-storeInteresse-0-python">Python</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                          <div class="tab-pane active" id="examples-Interesse-storeInteresse-0-curl">
+                            <pre class="prettyprint"><code class="language-bsh">curl -X POST "https://localhost/interesse"</code></pre>
+                          </div>
+                          <div class="tab-pane" id="examples-Interesse-storeInteresse-0-java">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.*;
+import io.swagger.client.auth.*;
+import io.swagger.client.model.*;
+import io.swagger.client.api.InteresseApi;
+
+import java.io.File;
+import java.util.*;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        
+        InteresseApi apiInstance = new InteresseApi();
+        Notificacao json = ; // Notificacao | são precisos os seguintes campos no arquivo JSON para criar o interesse
+        try {
+            apiInstance.storeInteresse(json);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#storeInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+
+                          <div class="tab-pane" id="examples-Interesse-storeInteresse-0-android">
+                            <pre class="prettyprint"><code class="language-java">import io.swagger.client.api.InteresseApi;
+
+public class InteresseApiExample {
+
+    public static void main(String[] args) {
+        InteresseApi apiInstance = new InteresseApi();
+        Notificacao json = ; // Notificacao | são precisos os seguintes campos no arquivo JSON para criar o interesse
+        try {
+            apiInstance.storeInteresse(json);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InteresseApi#storeInteresse");
+            e.printStackTrace();
+        }
+    }
+}</code></pre>
+                          </div>
+  <!--
+  <div class="tab-pane" id="examples-Interesse-storeInteresse-0-groovy">
+  <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+  </div> -->
+                            <div class="tab-pane" id="examples-Interesse-storeInteresse-0-objc">
+                              <pre class="prettyprint"><code class="language-cpp">Notificacao *json = ; // são precisos os seguintes campos no arquivo JSON para criar o interesse (optional)
+
+InteresseApi *apiInstance = [[InteresseApi alloc] init];
+
+// realiza cadastro da notificacao
+[apiInstance storeInteresseWith:json
+              completionHandler: ^(NSError* error) {
+                            if (error) {
+                                NSLog(@"Error: %@", error);
+                            }
+                        }];
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-storeInteresse-0-javascript">
+                              <pre class="prettyprint"><code class="language-js">var IRentBackDocumentao = require('i_rent_back_documentao');
+
+var api = new IRentBackDocumentao.InteresseApi()
+
+var opts = { 
+  'json':  // {Notificacao} são precisos os seguintes campos no arquivo JSON para criar o interesse
+};
+
+var callback = function(error, data, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log('API called successfully.');
+  }
+};
+api.storeInteresse(opts, callback);
+</code></pre>
+                            </div>
+
+                            <!--<div class="tab-pane" id="examples-Interesse-storeInteresse-0-angular">
+              <pre class="prettyprint language-json prettyprinted" data-type="json"><code>Coming Soon!</code></pre>
+            </div>-->
+                            <div class="tab-pane" id="examples-Interesse-storeInteresse-0-csharp">
+                              <pre class="prettyprint"><code class="language-cs">using System;
+using System.Diagnostics;
+using IO.Swagger.Api;
+using IO.Swagger.Client;
+using IO.Swagger.Model;
+
+namespace Example
+{
+    public class storeInteresseExample
+    {
+        public void main()
+        {
+            
+            var apiInstance = new InteresseApi();
+            var json = new Notificacao(); // Notificacao | são precisos os seguintes campos no arquivo JSON para criar o interesse (optional) 
+
+            try
+            {
+                // realiza cadastro da notificacao
+                apiInstance.storeInteresse(json);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception when calling InteresseApi.storeInteresse: " + e.Message );
+            }
+        }
+    }
+}
+</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-storeInteresse-0-php">
+                              <pre class="prettyprint"><code class="language-php"><&#63;php
+require_once(__DIR__ . '/vendor/autoload.php');
+
+$api_instance = new Swagger\Client\Api\InteresseApi();
+$json = ; // Notificacao | são precisos os seguintes campos no arquivo JSON para criar o interesse
+
+try {
+    $api_instance->storeInteresse($json);
+} catch (Exception $e) {
+    echo 'Exception when calling InteresseApi->storeInteresse: ', $e->getMessage(), PHP_EOL;
+}
+?></code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-storeInteresse-0-perl">
+                              <pre class="prettyprint"><code class="language-perl">use Data::Dumper;
+use WWW::SwaggerClient::Configuration;
+use WWW::SwaggerClient::InteresseApi;
+
+my $api_instance = WWW::SwaggerClient::InteresseApi->new();
+my $json = WWW::SwaggerClient::Object::Notificacao->new(); # Notificacao | são precisos os seguintes campos no arquivo JSON para criar o interesse
+
+eval { 
+    $api_instance->storeInteresse(json => $json);
+};
+if ($@) {
+    warn "Exception when calling InteresseApi->storeInteresse: $@\n";
+}</code></pre>
+                            </div>
+
+                            <div class="tab-pane" id="examples-Interesse-storeInteresse-0-python">
+                              <pre class="prettyprint"><code class="language-python">from __future__ import print_statement
+import time
+import swagger_client
+from swagger_client.rest import ApiException
+from pprint import pprint
+
+# create an instance of the API class
+api_instance = swagger_client.InteresseApi()
+json =  # Notificacao | são precisos os seguintes campos no arquivo JSON para criar o interesse (optional)
+
+try: 
+    # realiza cadastro da notificacao
+    api_instance.store_interesse(json=json)
+except ApiException as e:
+    print("Exception when calling InteresseApi->storeInteresse: %s\n" % e)</code></pre>
+                            </div>
+                          </div>
+
+                          <h2>Parameters</h2>
+
+
+
+                            <div class="methodsubtabletitle">Body parameters</div>
+                            <table id="methodsubtable">
+                              <tr>
+                                <th width="150px">Name</th>
+                                <th>Description</th>
+                              </tr>
+                                <tr><td style="width:150px;">json </td>
+<td>
+
+
+<script>
+$(document).ready(function() {
+  var schemaWrapper = {
+  "in" : "body",
+  "name" : "json",
+  "description" : "são precisos os seguintes campos no arquivo JSON para criar o interesse",
+  "required" : false,
+  "schema" : {
+    "$ref" : "#/definitions/Notificacao"
+  }
+};
+  var schema = schemaWrapper.schema;
+  if (schema.$ref != null) {
+    schema = defsParser.$refs.get(schema.$ref);
+  } else {
+    schemaWrapper.definitions = Object.assign({}, defs);
+    $RefParser.dereference(schemaWrapper).catch(function(err) {
+      console.log(err);
+    });
+  }
+
+  var view = new JSONSchemaView(schema,2,{isBodyParam: true});
+  var result = $('#d2e199_storeInteresse_json');
+  result.empty();
+  result.append(view.render());
+});
+</script>
+<div id="d2e199_storeInteresse_json"></div>
+</td>
+</tr>
+
+                            </table>
+
+
+
+                          <h2>Responses</h2>
+                            <h3> Status: 201 - Interesse Realizado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 403 - Interesse Já Cadastrado </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
+                            </div>
+
+                            <h3> Status: 500 - Erro interno do servidor </h3>
+
+                            <ul class="nav nav-tabs nav-tabs-examples" >
+                            </ul>
+
+                            <div class="tab-content" style='margin-bottom: 10px;'>
                             </div>
 
                         </article>
